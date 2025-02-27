@@ -28,10 +28,13 @@ platform :android do
   lane :beta do
     increment_version_code(gradle_file_path: "./app/build.gradle")
     gradle(task: "clean assembleRelease")
+
+    last_commits = `git log -5 --pretty=format:"%h - %s"`.strip
+
     firebase_app_distribution(
       app: ENV["FIREBASE_APP_ID"],
       service_credentials_file: "./fastlane/getmobil-case-study-service-acount.json",
-      release_notes: "Lots of amazing new features to test out!"
+      release_notes: last_commits
     )
     # crashlytics
   
