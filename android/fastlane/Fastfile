@@ -13,6 +13,9 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+require 'dotenv'
+Dotenv.load
+
 default_platform(:android)
 
 platform :android do
@@ -23,7 +26,13 @@ platform :android do
 
   desc "Submit a new Beta Build"
   lane :beta do
+    increment_version_code(gradle_file_path: "./app/build.gradle")
     gradle(task: "clean assembleRelease")
+    firebase_app_distribution(
+      app: ENV["FIREBASE_APP_ID"],
+      service_credentials_file: "./fastlane/getmobil-case-study-service-acount.json",
+      release_notes: "Lots of amazing new features to test out!"
+    )
     # crashlytics
   
     # sh "your_script.sh"
