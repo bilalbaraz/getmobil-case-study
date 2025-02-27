@@ -1,32 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import styles from './styles';
+import { Button } from 'react-native-paper';
 
 const CartScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.text}>CartScreen</Text>
+        <Text style={styles.title}>Sepetin şu an boş</Text>
+        <Text style={styles.text}>Fırsatlara hemen göz atmak ister misin?</Text>
+        <Button icon={'cart-outline'} mode="contained">
+          Alışverişe Başla
+        </Button>
       </View>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-});
 
 export default CartScreen;
