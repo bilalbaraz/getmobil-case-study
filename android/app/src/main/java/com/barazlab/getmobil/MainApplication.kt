@@ -1,4 +1,4 @@
-package com.getmobilcasestudy
+package com.barazlab.getmobil
 
 import android.app.Application
 import com.facebook.react.PackageList
