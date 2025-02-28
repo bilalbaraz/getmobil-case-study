@@ -2,8 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import styles from './styles';
+import { SlideProps } from '@types/SlideProps';
 
-const Slide = ({ slideUri }: any) => (
+const Slide = ({ slideUri }: SlideProps) => (
     <View style={styles.imageContainer}>
         <FastImage
             style={styles.image}

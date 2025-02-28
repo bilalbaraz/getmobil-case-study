@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
+import { Button } from 'react-native-paper';
 import styles from './styles';
-import { FONTS } from '../../../constants/fonts';
-import { ProductCardProps } from '../../types/ProductCardProps';
+import { FONTS } from '@constants/fonts';
+import { ProductCardProps } from '@types/ProductCardProps';
 import FastImage from 'react-native-fast-image';
+import { COLORS } from '@constants/colors';
 
 const ProductCard = ({ item }: ProductCardProps) => (
     <View style={styles.container}>
@@ -29,9 +31,16 @@ const ProductCard = ({ item }: ProductCardProps) => (
             )}
         </View>
         <View style={styles.actionsContainer}>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>İncele</Text>
-            </TouchableOpacity>
+            <Button 
+                mode="contained"
+                buttonColor={COLORS.primary}
+                textColor={COLORS.white}
+                style={styles.button}
+                labelStyle={styles.buttonText}
+                onPress={() => {}}
+            >
+                İncele
+            </Button>
         </View>
     </View>
 );

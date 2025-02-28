@@ -4,12 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { configureFonts, MD3LightTheme as DefaultTheme, Icon, PaperProvider } from 'react-native-paper';
 
-import HomeScreen from './presentation/screens/HomeScreen';
-import CartScreen from './presentation/screens/CartScreen';
-import FavoritesScreen from './presentation/screens/FavoritesScreen';
-import AccountScreen from './presentation/screens/AccountScreen';
-import { COLORS } from './constants/colors';
-import { FONTS } from './constants/fonts';
+import HomeScreen from '@screens/HomeScreen';
+import CartScreen from '@screens/CartScreen';
+import FavoritesScreen from '@screens/FavoritesScreen';
+import AccountScreen from '@screens/AccountScreen';
+import { COLORS } from '@constants/colors';
+import { FONTS } from '@constants/fonts';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -93,7 +93,7 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: COLORS.primary,
-    secondary: 'black',
+    secondary: COLORS.black,
     background: '#f2f2f7',
   },
   fonts: configureFonts({config: fontConfig}),
