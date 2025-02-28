@@ -1,7 +1,7 @@
 import React from "react";
 import { View, ScrollView } from "react-native";
 import { List, Avatar, Button, Divider, Text } from "react-native-paper";
-import { FONTS } from "../../../constants/fonts";
+import { FONTS } from "@constants/fonts";
 
 export default function AccountScreen() {
   return (

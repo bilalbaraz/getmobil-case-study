@@ -3,9 +3,9 @@ import { View, ScrollView, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {Searchbar, Title } from 'react-native-paper';
 import styles from './styles';
-import { FONTS } from '../../../constants/fonts';
-import ProductCard from '../../components/ProductCard';
-import Slide from '../../components/Slide';
+import { FONTS } from '@constants/fonts';
+import ProductCard from '@components/ProductCard';
+import Slide from '@components/Slide';
 
 const dummyProducts = [
   { id: "1", name: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", price: "₺109.95", image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" },
