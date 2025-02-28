@@ -1,32 +1,26 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Searchbar } from 'react-native-paper';
+import styles from './styles';
 
 const HomeScreen = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <SafeAreaView style={styles.container}>
+      <Searchbar
+        placeholder="Cihaz ara"
+        onChangeText={setSearchQuery}
+        value={searchQuery}
+        mode={'bar'}
+        style={{margin: 10, borderRadius: 5}}
+      />
       <View style={styles.content}>
         <Text style={styles.text}>HomeScreen</Text>
       </View>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-});
 
 export default HomeScreen;

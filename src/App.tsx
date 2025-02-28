@@ -103,11 +103,13 @@ const App = () => {
     <PaperProvider theme={theme}>
       <SafeAreaProvider>
         <NavigationContainer>
-          <BottomTab.Navigator screenOptions={{
-            tabBarLabelStyle: { fontFamily: FONTS.Poppins.regular },
-            tabBarActiveTintColor: COLORS.primary,
-            tabBarInactiveTintColor: "#94A3B8",
-          }}>
+          <BottomTab.Navigator
+            screenOptions={{
+              tabBarLabelStyle: { fontFamily: FONTS.Poppins.regular },
+              tabBarActiveTintColor: COLORS.primary,
+              tabBarInactiveTintColor: "#94A3B8",
+              headerShown: false,
+            }}>
             <BottomTab.Screen
               options={{
                 tabBarLabel: 'Anasayfa',
