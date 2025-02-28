@@ -94,6 +94,7 @@ const theme = {
     ...DefaultTheme.colors,
     primary: COLORS.primary,
     secondary: 'black',
+    background: '#f2f2f7',
   },
   fonts: configureFonts({config: fontConfig}),
 };

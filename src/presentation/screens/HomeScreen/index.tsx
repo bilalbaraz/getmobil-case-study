@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import { View, ScrollView, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button, Card, Paragraph, Searchbar, Title } from 'react-native-paper';
+import {Searchbar, Title } from 'react-native-paper';
 import styles from './styles';
 import { FONTS } from '../../../constants/fonts';
+import ProductCard from '../../components/ProductCard';
+import Slide from '../../components/Slide';
 
 const dummyProducts = [
-  { id: "1", name: "iPhone 12", price: "₺10.999", image: "https://picsum.photos/150?random=1" },
+  { id: "1", name: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", price: "₺109.95", image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" },
   { id: "2", name: "Samsung Galaxy S21", price: "₺9.499", image: "https://picsum.photos/150?random=2" },
   { id: "3", name: "Xiaomi Mi 11", price: "₺7.999", image: "https://picsum.photos/150?random=3" },
 ];
@@ -25,27 +27,16 @@ const dummyTopRatedPhones = [
   { id: "3", name: "OnePlus 9", rating: "4.7", image: "https://picsum.photos/150?random=6" },
 ];
 
+const _renderProductCard = ({item}: any) => <ProductCard item={item} />;
+
 const Section = ({ title, data }: any) => (
-  <View style={{ marginVertical: 10 }}>
-    <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold }}>{title}</Title>
+  <View style={{ marginVertical: 5 }}>
+    <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>{title}</Title>
     <FlatList
       horizontal
       data={data}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <Card style={{ margin: 10, width: 150 }}>
-          <Card.Cover source={{ uri: item.image }} style={{ height: 100 }} />
-          <Card.Content>
-            <Title>{item.name || item.title}</Title>
-            {item.price && <Paragraph>{item.price}</Paragraph>}
-            {item.rating && <Paragraph>⭐ {item.rating}</Paragraph>}
-            {item.description && <Paragraph>{item.description}</Paragraph>}
-          </Card.Content>
-          <Card.Actions>
-            <Button>İncele</Button>
-          </Card.Actions>
-        </Card>
-      )}
+      renderItem={_renderProductCard}
     />
   </View>
 );
@@ -64,6 +55,8 @@ const HomeScreen = () => {
         inputStyle={{paddingTop: 0, fontSize: 13}}
       />
       <ScrollView style={{ flex: 1 }}>
+        <Slide slideUri={require('../../../assets/slides/slide1.webp')} />
+        <Slide slideUri={require('../../../assets/slides/slide2.webp')} />
         <Section title="Haftanın Fırsat Ürünleri" data={dummyProducts} />
         <Section title="Kampanyalar" data={dummyCampaigns} />
         <Section title="Çok Beğenilen Yenilenmiş Telefonlar" data={dummyTopRatedPhones} />
