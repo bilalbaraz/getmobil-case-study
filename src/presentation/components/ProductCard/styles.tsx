@@ -2,26 +2,27 @@ import { StyleSheet, Dimensions } from 'react-native';
 import {COLORS} from '../../../constants/colors';
 
 const { width } = Dimensions.get('window');
-const cardWidth = width / 2;
+const cardWidth = width / 2.2;
 
 const styles = StyleSheet.create({
     container: {
-        margin: 5, 
-        width: cardWidth - 20, 
-        borderWidth: 1, 
-        borderColor: 'rgb(220, 222, 237)',
+        margin: 5,
+        width: cardWidth - 20,
+        borderWidth: 1,
+        borderColor: COLORS.border,
         borderRadius: 8,
-        backgroundColor: 'white',
+        backgroundColor: COLORS.white,
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        height: 250,
     },
     imageContainer: {
-        padding: 5,
+        padding: 0,
     },
-    image: { 
-        height: 100, 
+    image: {
+        borderTopRightRadius: 5,
+        borderTopLeftRadius: 5,
+        height: 90,
     },
     contentContainer: {
         padding: 10,
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     },
     paragraph: {
         fontSize: 12,
-        lineHeight: 16,
+        lineHeight: 10,
         marginBottom: 5,
     },
     actionsContainer: {

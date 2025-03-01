@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     display: 'flex', 
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingBottom: 5,
   },
   searchContainer: {
     flex: 5

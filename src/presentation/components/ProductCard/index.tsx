@@ -5,7 +5,6 @@ import styles from './styles';
 import { FONTS } from '@constants/fonts';
 import { ProductCardProps } from '@types/ProductCardProps';
 import FastImage from 'react-native-fast-image';
-import { COLORS } from '@constants/colors';
 
 const ProductCard = ({ item }: ProductCardProps) => (
     <View style={styles.container}>
@@ -17,7 +16,11 @@ const ProductCard = ({ item }: ProductCardProps) => (
             />
         </View>
         <View style={styles.contentContainer}>
-            <Text style={[styles.title, {fontFamily: FONTS.Poppins.semibold}]}>
+            <Text 
+                style={[styles.title, {fontFamily: FONTS.Poppins.semibold}]}
+                numberOfLines={2}
+                ellipsizeMode="tail"
+            >
                 {item.name || item.title}
             </Text>
             {item.price && (
