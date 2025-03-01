@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { configureFonts, MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
-import { COLORS } from '@constants/colors';
+import { PaperProvider } from 'react-native-paper';
 import BottomTabNavigator from './presentation/navigation/BottomTabNavigator';
 import { NetworkUtils } from '@utils/network';
-import { FONT_CONFIG } from './config/font';
 import ConnectionStatus from './presentation/components/ConnectionStatus';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { darkTheme, lightTheme } from '@config/theme';
 
 const queryClient = new QueryClient();
 
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: COLORS.primary,
-    secondary: COLORS.black,
-    background: COLORS.background,
-  },
-  fonts: configureFonts({config: FONT_CONFIG}),
-};
-
 const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isOnline, setIsOnline] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -35,7 +24,7 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PaperProvider theme={theme}>
+      <PaperProvider theme={lightTheme}>
         <SafeAreaProvider>
         {isOnline === null
             ? <ConnectionStatus status="checking" />
