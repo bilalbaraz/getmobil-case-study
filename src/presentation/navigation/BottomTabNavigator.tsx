@@ -17,6 +17,7 @@ const BottomTabNavigator = () => {
               tabBarActiveTintColor: COLORS.primary,
               tabBarInactiveTintColor: "#94A3B8",
               headerShown: false,
+              animation: 'none'
             }}>
             <BottomTab.Screen
               options={{

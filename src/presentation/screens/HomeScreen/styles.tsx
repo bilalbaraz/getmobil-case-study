@@ -1,9 +1,13 @@
+import { COLORS } from '@constants/colors';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.background,
   },
   content: {
     flex: 1,
@@ -12,7 +16,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: '700',
     color: '#333',
   },
 });

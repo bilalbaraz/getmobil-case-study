@@ -9,6 +9,7 @@ import Slide from '@components/Slide';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from 'presentation/navigation/types';
+import { COLORS } from '@constants/colors';
 
 const dummyProducts = [
   { id: "1", name: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", price: "₺109.95", image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" },
@@ -53,17 +54,19 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Animated.View style={{ width: widthAnim }}>
-        <Searchbar
-          placeholder="Cihaz ara"
-          onChangeText={setSearchQuery}
-          value={searchQuery}
-          mode={'bar'}
-          style={{margin: 10, borderRadius: 5, height: 50, width: Dimensions.get('window').width * 0.7}}
-          inputStyle={{fontSize: 13}}
-          onFocus={() => navigation.navigate('Search')}
-        />
+      <View style={{display: 'flex'}}>
+        <Animated.View style={{ width: widthAnim }}>
+          <Searchbar
+            placeholder="Cihaz ara"
+            onChangeText={setSearchQuery}
+            value={searchQuery}
+            mode={'bar'}
+            style={{borderRadius: 5, height: 50, borderWidth: 1, borderColor: COLORS.border, backgroundColor: COLORS.white, width: Dimensions.get('window').width * 0.8}}
+            inputStyle={{fontSize: 13}}
+            onPress={() => navigation.navigate('Search')}
+          />
         </Animated.View>
+      </View>
       <ScrollView style={{ flex: 1 }}>
         <Slide slideUri={require('../../../assets/slides/slide1.webp')} />
         <Slide slideUri={require('../../../assets/slides/slide2.webp')} />

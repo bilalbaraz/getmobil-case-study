@@ -1,11 +1,14 @@
 import { StyleSheet } from 'react-native';
-import { FONTS } from '../../../constants/fonts';
-import { COLORS } from '../../../constants/colors';
+import { FONTS } from '@constants/fonts';
+import { COLORS } from '@constants/colors';
 
 const styles = StyleSheet.create({
     container: {
+      paddingTop: 5,
+      paddingLeft: 5,
+      paddingRight: 5,
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: COLORS.background,
     },
     content: {
       flex: 1,

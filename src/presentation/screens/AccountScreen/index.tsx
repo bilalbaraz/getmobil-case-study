@@ -2,11 +2,12 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import { List, Avatar, Button, Divider, Text } from "react-native-paper";
 import { FONTS } from "@constants/fonts";
+import { COLORS } from "@constants/colors";
 
 export default function AccountScreen() {
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "#f5f5f5" }}>
-      <View style={{ alignItems: "center", padding: 20, backgroundColor: "white" }}>
+    <ScrollView style={{ flex: 1, backgroundColor: COLORS.background }}>
+      <View style={{ alignItems: "center", padding: 20, backgroundColor: "" }}>
         <Avatar.Image size={80} source={{ uri: "https://picsum.photos/600/600" }} />
         <Text variant="titleLarge" style={{ marginTop: 10, fontFamily: FONTS.Poppins.regular }}>
           Bilal Baraz
@@ -57,8 +58,7 @@ export default function AccountScreen() {
       </List.Section>
       
       <Divider />
-      
-      {/* Çıkış Yap Butonu */}
+
       <View style={{ padding: 20 }}>
         <Button icon={'logout-variant'} mode="outlined" textColor={'#94A3B8'} labelStyle={{fontFamily: FONTS.Poppins.regular}} style={{borderColor: '#94A3B8', borderRadius: 5}} onPress={() => console.log("Çıkış yapıldı")}>Çıkış Yap</Button>
       </View>
