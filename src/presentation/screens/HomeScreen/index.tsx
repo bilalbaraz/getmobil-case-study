@@ -12,15 +12,7 @@ import { HomeStackParamList } from 'presentation/navigation/types';
 import { COLORS } from '@constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useProducts } from '@hooks/useProducts';
-import { Product } from '../../../data/models/Product';
-
-const dummyCampaigns = [
-  { id: "1", title: "Yaz Kampanyası", description: "Tüm ürünlerde %20 indirim!" },
-  { id: "2", title: "Kargo Bedava", description: "₺500 üzeri alışverişlerde kargo ücretsiz!" },
-  { id: "3", title: "Kargo Bedava", description: "₺500 üzeri alışverişlerde kargo ücretsiz!" },
-  { id: "4", title: "Kargo Bedava", description: "₺500 üzeri alışverişlerde kargo ücretsiz!" },
-  { id: "5", title: "Kargo Bedava", description: "₺500 üzeri alışverişlerde kargo ücretsiz!" },
-];
+import { Product } from '@models/Product';
 
 const _renderProductCard = ({item}: {item: Product}) => <ProductCard item={item} />;
 
@@ -88,12 +80,6 @@ const HomeScreen = () => {
           data={products || []} 
           isLoading={isLoading} 
           error={error} 
-        />
-        <Section 
-          title="Kampanyalar" 
-          data={dummyCampaigns} 
-          isLoading={false} 
-          error={null} 
         />
         <Section 
           title="Çok Beğenilen Yenilenmiş Telefonlar" 

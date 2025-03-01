@@ -1,18 +1,17 @@
 import React from "react";
 import { View, ScrollView } from "react-native";
 import { List, Avatar, Button, Divider, Text } from "react-native-paper";
-import { FONTS } from "@constants/fonts";
-import { COLORS } from "@constants/colors";
+import styles from './styles';
 
 export default function AccountScreen() {
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: COLORS.background }}>
-      <View style={{ alignItems: "center", padding: 20, backgroundColor: "" }}>
+    <ScrollView style={styles.container}>
+      <View style={styles.profileContainer}>
         <Avatar.Image size={80} source={{ uri: "https://picsum.photos/600/600" }} />
-        <Text variant="titleLarge" style={{ marginTop: 10, fontFamily: FONTS.Poppins.regular }}>
+        <Text variant="titleLarge" style={styles.nameText}>
           Bilal Baraz
         </Text>
-        <Text variant="bodyMedium" style={{ color: "gray", fontFamily: FONTS.Poppins.regular }}>
+        <Text variant="bodyMedium" style={styles.emailText}>
           bilalbaraz@windowslive.com
         </Text>
       </View>
@@ -22,19 +21,19 @@ export default function AccountScreen() {
       <List.Section>
         <List.Item
           title="Siparişlerim"
-          titleStyle={{fontFamily: FONTS.Poppins.regular}}
+          titleStyle={styles.itemTitle}
           left={(props) => <List.Icon {...props} icon="cart-outline" />}
           onPress={() => console.log("Siparişlerim açıldı")}
         />
         <List.Item
           title="Favorilerim"
-          titleStyle={{fontFamily: FONTS.Poppins.regular}}
+          titleStyle={styles.itemTitle}
           left={(props) => <List.Icon {...props} icon="heart-outline" />}
           onPress={() => console.log("Favorilerim açıldı")}
         />
         <List.Item
           title="Kuponlarım"
-          titleStyle={{fontFamily: FONTS.Poppins.regular}}
+          titleStyle={styles.itemTitle}
           left={(props) => <List.Icon {...props} icon="ticket-percent-outline" />}
           onPress={() => console.log("Kuponlarım açıldı")}
         />
@@ -45,13 +44,13 @@ export default function AccountScreen() {
       <List.Section>
         <List.Item
           title="Ayarlar"
-          titleStyle={{fontFamily: FONTS.Poppins.regular}}
+          titleStyle={styles.itemTitle}
           left={(props) => <List.Icon {...props} icon="cog-outline" />}
           onPress={() => console.log("Ayarlar açıldı")}
         />
         <List.Item
           title="Destek Merkezi"
-          titleStyle={{fontFamily: FONTS.Poppins.regular}}
+          titleStyle={styles.itemTitle}
           left={(props) => <List.Icon {...props} icon="help-circle-outline" />}
           onPress={() => console.log("Destek açıldı")}
         />
@@ -59,8 +58,17 @@ export default function AccountScreen() {
       
       <Divider />
 
-      <View style={{ padding: 20 }}>
-        <Button icon={'logout-variant'} mode="outlined" textColor={'#94A3B8'} labelStyle={{fontFamily: FONTS.Poppins.regular}} style={{borderColor: '#94A3B8', borderRadius: 5}} onPress={() => console.log("Çıkış yapıldı")}>Çıkış Yap</Button>
+      <View style={styles.buttonContainer}>
+        <Button 
+          icon={'logout-variant'} 
+          mode="outlined" 
+          textColor={'#94A3B8'} 
+          labelStyle={styles.logoutButtonLabel} 
+          style={styles.logoutButton} 
+          onPress={() => console.log("Çıkış yapıldı")}
+        >
+          Çıkış Yap
+        </Button>
       </View>
     </ScrollView>
   );

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert, Animated, Dimensions, FlatList, TouchableOpacity, View } from 'react-native';
+import { Animated, Dimensions, FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
-import { Searchbar, Text, Title } from 'react-native-paper';
+import { Searchbar, Title } from 'react-native-paper';
 import { FONTS } from '@constants/fonts';
-import RecentSearch from '@components/RecentSearch';
 import { COLORS } from '@constants/colors';
 import PopularSearch from '@components/PopularSearch';
 import RecentVisitedProduct from '@components/RecentVisitedProduct';
+import SearchHistory from '@components/SearchHistory';
 import { useSearchHistory } from '@hooks/useSearchHistory';
 
 const dummyRecentVisitedProduct = [
@@ -23,7 +23,7 @@ const renderRecentVisitedProducts = ({item}: any) => <RecentVisitedProduct produ
 const SearchScreen = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const widthAnim = useRef(new Animated.Value(200)).current;
-    const { searchHistory, isLoading, error, addSearchTerm, clearSearchHistory } = useSearchHistory();
+    const { searchHistory, addSearchTerm } = useSearchHistory();
   
     const handleSearch = () => {
       if (searchQuery.trim()) {
@@ -56,41 +56,21 @@ const SearchScreen = () => {
               />
           </Animated.View>
         </View>
-        {searchHistory && searchHistory.length > 0 && !isLoading ? (
-          <View style={{marginTop: 10, marginBottom: 10}}>
-            <View style={{display: 'flex', flexDirection: 'row'}}>
-              <View style={{flex: 2}}>
-                <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>Geçmiş Aramalarım</Title>
-              </View>
-              <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-end'}}>
-                <TouchableOpacity onPress={() => clearSearchHistory()}>
-                  <Text style={{color: COLORS.primary, fontWeight: '400'}}>Tümünü Temizle</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View>
-              <FlatList
-                data={searchHistory ?? []}
-                horizontal
-                renderItem={({item}) => <RecentSearch keyword={item} />}
-              />
-            </View>
-          </View>
-        ) : null}
+        {searchHistory && searchHistory.length > 0 ? <SearchHistory /> : null}
         <View style={{marginTop: 10, marginBottom: 10}}>
-        <View style={{display: 'flex', flexDirection: 'row'}}>
-            <View style={{flex: 1}}>
-              <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>Son Gezdiğim Ürünler</Title>
-            </View>
-        </View>
-        <View>
-          <FlatList
-              data={dummyRecentVisitedProduct}
-              horizontal
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={renderRecentVisitedProducts}
-            />
-        </View>
+          <View style={{display: 'flex', flexDirection: 'row'}}>
+              <View style={{flex: 1}}>
+                <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>Son Gezdiğim Ürünler</Title>
+              </View>
+          </View>
+          <View>
+            <FlatList
+                data={dummyRecentVisitedProduct}
+                horizontal
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={renderRecentVisitedProducts}
+              />
+          </View>
         </View>
         <View style={{marginTop: 10, marginBottom: 10}}>
           <View style={{display: 'flex', flexDirection: 'row'}}>
