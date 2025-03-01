@@ -32,14 +32,12 @@ const ProductCard = ({ item }: ProductCardProps) => (
         </View>
         <View style={styles.actionsContainer}>
             <Button 
-                mode="contained"
-                buttonColor={COLORS.primary}
-                textColor={COLORS.white}
+                mode="outlined"
                 style={styles.button}
                 labelStyle={styles.buttonText}
                 onPress={() => {}}
             >
-                İncele
+                Sepete Ekle
             </Button>
         </View>
     </View>

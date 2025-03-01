@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: 'white',
         overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        height: 250,
     },
     imageContainer: {
         padding: 5,
@@ -22,6 +25,7 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         padding: 10,
+        flex: 1,
     },
     title: {
         fontSize: 12,
@@ -36,11 +40,13 @@ const styles = StyleSheet.create({
     },
     actionsContainer: {
         flexDirection: 'row',
-        justifyContent: 'flex-end',
         padding: 8,
+        marginTop: 'auto',
     },
     button: {
+        borderColor: COLORS.primary,
         borderRadius: 5,
+        flex: 1,
     },
     buttonText: {
         fontSize: 12,
