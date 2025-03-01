@@ -8,6 +8,7 @@ import RecentSearch from '@components/RecentSearch';
 import { COLORS } from '@constants/colors';
 import PopularSearch from '@components/PopularSearch';
 import RecentVisitedProduct from '@components/RecentVisitedProduct';
+import { useSearchHistory } from '@hooks/useSearchHistory';
 
 const dummyRecentVisitedProduct = [
   { id: "1", name: "Apple iPhone 15 Pro Max 256 GB Natürel Titanyum", image: "https://picsum.photos/150?random=1" },
@@ -22,7 +23,15 @@ const renderRecentVisitedProducts = ({item}: any) => <RecentVisitedProduct produ
 const SearchScreen = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const widthAnim = useRef(new Animated.Value(200)).current;
+    const { searchHistory, isLoading, error, addSearchTerm, clearSearchHistory } = useSearchHistory();
   
+    const handleSearch = () => {
+      if (searchQuery.trim()) {
+        addSearchTerm(searchQuery);
+        setSearchQuery('');
+      }
+    };
+
     useEffect(() => {
       Animated.timing(widthAnim, {
         toValue: Dimensions.get('window').width * 0.97,
@@ -38,6 +47,7 @@ const SearchScreen = () => {
               <Searchbar
               placeholder="Cihaz ara"
               onChangeText={setSearchQuery}
+              onSubmitEditing={handleSearch}
               value={searchQuery}
               mode={'bar'}
               autoFocus
@@ -46,25 +56,27 @@ const SearchScreen = () => {
               />
           </Animated.View>
         </View>
-        <View style={{marginTop: 10, marginBottom: 10}}>
-          <View style={{display: 'flex', flexDirection: 'row'}}>
-            <View style={{flex: 2}}>
-              <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>Geçmiş Aramalarım</Title>
+        {searchHistory && searchHistory.length > 0 && !isLoading ? (
+          <View style={{marginTop: 10, marginBottom: 10}}>
+            <View style={{display: 'flex', flexDirection: 'row'}}>
+              <View style={{flex: 2}}>
+                <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>Geçmiş Aramalarım</Title>
+              </View>
+              <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-end'}}>
+                <TouchableOpacity onPress={() => clearSearchHistory()}>
+                  <Text style={{color: COLORS.primary, fontWeight: '400'}}>Tümünü Temizle</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-end'}}>
-              <TouchableOpacity onPress={() => Alert.alert('click delete')}>
-                <Text style={{color: COLORS.primary, fontWeight: '400'}}>Tümünü Temizle</Text>
-              </TouchableOpacity>
+            <View>
+              <FlatList
+                data={searchHistory ?? []}
+                horizontal
+                renderItem={({item}) => <RecentSearch keyword={item} />}
+              />
             </View>
           </View>
-          <View>
-            <FlatList
-              data={['bardak', 'kalem', 'kitap']}
-              horizontal
-              renderItem={({item}) => <RecentSearch keyword={item} />}
-            />
-          </View>
-        </View>
+        ) : null}
         <View style={{marginTop: 10, marginBottom: 10}}>
         <View style={{display: 'flex', flexDirection: 'row'}}>
             <View style={{flex: 1}}>

@@ -1,0 +1,3 @@
+export const LIMITS = {
+  MAX_SEARCH_HISTORY_ITEMS: 10
+};
