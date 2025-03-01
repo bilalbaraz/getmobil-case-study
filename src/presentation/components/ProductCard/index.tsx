@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
 import styles from './styles';
 import { FONTS } from '@constants/fonts';
 import { ProductCardProps } from '@types/ProductCardProps';
 import FastImage from 'react-native-fast-image';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { COLORS } from '@constants/colors';
 
 const ProductCard = ({ item }: ProductCardProps) => (
     <View style={styles.container}>
@@ -14,6 +16,9 @@ const ProductCard = ({ item }: ProductCardProps) => (
                 style={styles.image}
                 resizeMode={FastImage.resizeMode.cover}
             />
+            <TouchableOpacity style={styles.favoriteButton}>
+                <Icon name="heart-outline" size={16} color={COLORS.primary} />
+            </TouchableOpacity>
         </View>
         <View style={styles.contentContainer}>
             <Text 

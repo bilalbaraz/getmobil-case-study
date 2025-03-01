@@ -18,11 +18,24 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         padding: 0,
+        position: 'relative',
     },
     image: {
         borderTopRightRadius: 5,
         borderTopLeftRadius: 5,
         height: 90,
+    },
+    favoriteButton: {
+        position: 'absolute',
+        top: 8,
+        right: 8,
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: COLORS.white,
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 1,
     },
     contentContainer: {
         padding: 10,
