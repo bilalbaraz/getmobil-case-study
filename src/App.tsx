@@ -11,7 +11,6 @@ import { darkTheme, lightTheme } from '@config/theme';
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isOnline, setIsOnline] = useState<boolean | null>(null);
 
   useEffect(() => {
