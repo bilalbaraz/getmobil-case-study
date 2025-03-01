@@ -9,9 +9,12 @@
       "@constants/*": ["constants/*"],
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
+      "@config/*": ["config/*"],
       "@services/*": ["services/*"],
       "@models/*": ["data/models/*"],
-      "@repositories/*": ["data/repositories/*"]
+      "@repositories/*": ["data/repositories/*"],
+      "@sources/*": ["data/sources/*"],
+      "@usecases/*": ["domain/usecases/*"]
     }
   }
 }

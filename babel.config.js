@@ -12,9 +12,12 @@ module.exports = {
           "@constants": "./src/constants",
           "@hooks": "./src/hooks",
           "@utils": "./src/utils",
+          "@config": "./src/config",
           "@services": "./src/services",
           "@models": "./src/data/models",
           "@repositories": "./src/data/repositories",
+          "@sources": "./src/data/sources",
+          "@usecases": "./src/domain/usecases",
         }
       }
     ]

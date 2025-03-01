@@ -1,4 +1,4 @@
-import { SearchHistoryStorage } from "../sources/local/searchHistoryStorage";
+import { SearchHistoryStorage } from "@sources/local/searchHistoryStorage";
 
 export class SearchHistoryRepository {
     static async getSearchHistory(): Promise<string[]> {

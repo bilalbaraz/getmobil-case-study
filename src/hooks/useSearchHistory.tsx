@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { GetSearchHistory } from "../domain/usecases/GetSearchHistory";
+import { GetSearchHistory } from "@usecases/GetSearchHistory";
 import { SearchHistoryRepository } from "@repositories/SearchHistoryRepository";
 
 export const useSearchHistory = () => {
