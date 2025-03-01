@@ -1,5 +1,5 @@
-import React, {useRef, useState} from 'react';
-import { View, ScrollView, FlatList, Dimensions, Animated } from 'react-native';
+import React, {useState} from 'react';
+import { View, ScrollView, FlatList, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {Searchbar, Title } from 'react-native-paper';
 import styles from './styles';
@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from 'presentation/navigation/types';
 import { COLORS } from '@constants/colors';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const dummyProducts = [
   { id: "1", name: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", price: "₺109.95", image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" },
@@ -50,24 +51,30 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList, 'H
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const [searchQuery, setSearchQuery] = useState('');
-  const widthAnim = useRef(new Animated.Value(200)).current;
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{display: 'flex'}}>
-        <Animated.View style={{ width: widthAnim }}>
-          <Searchbar
-            placeholder="Cihaz ara"
-            onChangeText={setSearchQuery}
-            value={searchQuery}
-            mode={'bar'}
-            style={{borderRadius: 5, height: 50, borderWidth: 1, borderColor: COLORS.border, backgroundColor: COLORS.white, width: Dimensions.get('window').width * 0.8}}
-            inputStyle={{fontSize: 13}}
-            onPress={() => navigation.navigate('Search')}
-          />
-        </Animated.View>
+      <View style={styles.headerContainer}>
+        <View style={styles.searchContainer}>
+          <Animated.View style={styles.animatedSearchContainer}>
+            <Searchbar
+              placeholder="Cihaz ara"
+              onChangeText={setSearchQuery}
+              value={searchQuery}
+              mode={'bar'}
+              style={styles.searchBar}
+              inputStyle={styles.searchInput}
+              onPress={() => navigation.navigate('Search')}
+            />
+          </Animated.View>
+        </View>
+        <View style={styles.notificationContainer}>
+          <View style={styles.notificationIconWrapper}>
+            <Icon name={'notifications-outline'} size={20} color={COLORS.white} />
+          </View>
+        </View>
       </View>
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={styles.scrollViewContainer}>
         <Slide slideUri={require('../../../assets/slides/slide1.webp')} />
         <Slide slideUri={require('../../../assets/slides/slide2.webp')} />
         <Section title="Haftanın Fırsat Ürünleri" data={dummyProducts} />
