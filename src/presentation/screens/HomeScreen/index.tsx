@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { View, ScrollView, FlatList, Animated } from 'react-native';
+import React, { useState } from 'react';
+import { View, ScrollView, FlatList, Animated, ActivityIndicator, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {Searchbar, Title } from 'react-native-paper';
 import styles from './styles';
@@ -11,12 +11,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from 'presentation/navigation/types';
 import { COLORS } from '@constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-const dummyProducts = [
-  { id: "1", name: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", price: "₺109.95", image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" },
-  { id: "2", name: "Samsung Galaxy S21", price: "₺9.499", image: "https://picsum.photos/150?random=2" },
-  { id: "3", name: "Xiaomi Mi 11", price: "₺7.999", image: "https://picsum.photos/150?random=3" },
-];
+import { useProducts } from '@hooks/useProducts';
+import { Product } from '../../../data/models/Product';
 
 const dummyCampaigns = [
   { id: "1", title: "Yaz Kampanyası", description: "Tüm ürünlerde %20 indirim!" },
@@ -26,23 +22,32 @@ const dummyCampaigns = [
   { id: "5", title: "Kargo Bedava", description: "₺500 üzeri alışverişlerde kargo ücretsiz!" },
 ];
 
-const dummyTopRatedPhones = [
-  { id: "1", name: "iPhone 11", rating: "4.8", image: "https://picsum.photos/150?random=4" },
-  { id: "2", name: "OnePlus 9", rating: "4.7", image: "https://picsum.photos/150?random=5" },
-  { id: "3", name: "OnePlus 9", rating: "4.7", image: "https://picsum.photos/150?random=6" },
-];
+const _renderProductCard = ({item}: {item: Product}) => <ProductCard item={item} />;
 
-const _renderProductCard = ({item}: any) => <ProductCard item={item} />;
-
-const Section = ({ title, data }: any) => (
+const Section = ({ title, data, isLoading, error }: { title: string, data: any[], isLoading: boolean, error: Error | null }) => (
   <View style={{ marginVertical: 5 }}>
     <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>{title}</Title>
-    <FlatList
-      horizontal
-      data={data}
-      keyExtractor={(item) => item.id}
-      renderItem={_renderProductCard}
-    />
+    {isLoading ? (
+      <View style={{ padding: 20, alignItems: 'center' }}>
+        <ActivityIndicator size="large" color={COLORS.primary} />
+      </View>
+    ) : error ? (
+      <View style={{ padding: 20, alignItems: 'center' }}>
+        <Text style={{ color: 'red' }}>Ürünler yüklenirken bir hata oluştu</Text>
+      </View>
+    ) : data && data.length > 0 ? (
+      <FlatList
+        horizontal
+        data={data}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={_renderProductCard}
+        showsHorizontalScrollIndicator={false}
+      />
+    ) : (
+      <View style={{ padding: 20, alignItems: 'center' }}>
+        <Text>Ürün bulunamadı</Text>
+      </View>
+    )}
   </View>
 );
 
@@ -51,6 +56,7 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList, 'H
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const [searchQuery, setSearchQuery] = useState('');
+  const { data: products, isLoading, error } = useProducts();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -77,9 +83,24 @@ const HomeScreen = () => {
       <ScrollView style={styles.scrollViewContainer}>
         <Slide slideUri={require('../../../assets/slides/slide1.webp')} />
         <Slide slideUri={require('../../../assets/slides/slide2.webp')} />
-        <Section title="Haftanın Fırsat Ürünleri" data={dummyProducts} />
-        <Section title="Kampanyalar" data={dummyCampaigns} />
-        <Section title="Çok Beğenilen Yenilenmiş Telefonlar" data={dummyTopRatedPhones} />
+        <Section 
+          title="Haftanın Fırsat Ürünleri" 
+          data={products || []} 
+          isLoading={isLoading} 
+          error={error} 
+        />
+        <Section 
+          title="Kampanyalar" 
+          data={dummyCampaigns} 
+          isLoading={false} 
+          error={null} 
+        />
+        <Section 
+          title="Çok Beğenilen Yenilenmiş Telefonlar" 
+          data={products || []} 
+          isLoading={isLoading} 
+          error={error} 
+        />
       </ScrollView>
     </SafeAreaView>
   );

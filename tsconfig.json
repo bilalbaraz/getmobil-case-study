@@ -6,7 +6,12 @@
       "@components/*": ["presentation/components/*"],
       "@screens/*": ["presentation/screens/*"],
       "@types/*": ["presentation/types/*"],
-      "@constants/*": ["constants/*"]
+      "@constants/*": ["constants/*"],
+      "@hooks/*": ["hooks/*"],
+      "@utils/*": ["utils/*"],
+      "@services/*": ["services/*"],
+      "@models/*": ["data/models/*"],
+      "@repositories/*": ["data/repositories/*"]
     }
   }
 }

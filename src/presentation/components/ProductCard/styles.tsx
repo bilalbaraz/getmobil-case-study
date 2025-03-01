@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     image: {
         borderTopRightRadius: 5,
         borderTopLeftRadius: 5,
-        height: 90,
+        height: 120,
     },
     favoriteButton: {
         position: 'absolute',
@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
         height: 28,
         borderRadius: 14,
         backgroundColor: COLORS.white,
+        borderColor: COLORS.border,
+        borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 1,

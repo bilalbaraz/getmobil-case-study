@@ -10,6 +10,11 @@ module.exports = {
           "@screens": "./src/presentation/screens",
           "@types": "./src/presentation/types",
           "@constants": "./src/constants",
+          "@hooks": "./src/hooks",
+          "@utils": "./src/utils",
+          "@services": "./src/services",
+          "@models": "./src/data/models",
+          "@repositories": "./src/data/repositories",
         }
       }
     ]

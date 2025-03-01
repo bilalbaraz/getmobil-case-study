@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { Button } from 'react-native-paper';
 import styles from './styles';
 import { FONTS } from '@constants/fonts';
@@ -11,12 +11,13 @@ import { COLORS } from '@constants/colors';
 const ProductCard = ({ item }: ProductCardProps) => (
     <View style={styles.container}>
         <View style={styles.imageContainer}>
-            <FastImage 
-                source={{ uri: item.image }} 
+            <FastImage
+                source={{ uri: item.image }}
                 style={styles.image}
-                resizeMode={FastImage.resizeMode.cover}
+                resizeMode={FastImage.resizeMode.contain}
+                onError={(error) => console.log('a', error)}
             />
-            <TouchableOpacity style={styles.favoriteButton}>
+            <TouchableOpacity onPress={() => Alert.alert('clicked fav')} style={styles.favoriteButton}>
                 <Icon name="heart-outline" size={16} color={COLORS.primary} />
             </TouchableOpacity>
         </View>
@@ -26,16 +27,22 @@ const ProductCard = ({ item }: ProductCardProps) => (
                 numberOfLines={2}
                 ellipsizeMode="tail"
             >
-                {item.name || item.title}
+                {item.title}
             </Text>
             {item.price && (
-                <Text style={styles.paragraph}>{item.price}</Text>
+                <Text style={styles.paragraph}>₺{item.price}</Text>
             )}
             {item.rating && (
-                <Text style={styles.paragraph}>⭐ {item.rating}</Text>
+                <Text style={styles.paragraph}>⭐ {item.rating.rate} ({item.rating.count})</Text>
             )}
             {item.description && (
-                <Text style={styles.paragraph}>{item.description}</Text>
+                <Text 
+                    style={styles.paragraph}
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                >
+                    {item.description}
+                </Text>
             )}
         </View>
         <View style={styles.actionsContainer}>
