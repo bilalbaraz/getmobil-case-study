@@ -1,17 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { configureFonts, MD3LightTheme as DefaultTheme, Icon, PaperProvider } from 'react-native-paper';
-
-import HomeScreen from '@screens/HomeScreen';
-import CartScreen from '@screens/CartScreen';
-import FavoritesScreen from '@screens/FavoritesScreen';
-import AccountScreen from '@screens/AccountScreen';
+import { configureFonts, MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
 import { COLORS } from '@constants/colors';
-import { FONTS } from '@constants/fonts';
-
-const BottomTab = createBottomTabNavigator();
+import BottomTabNavigator from './presentation/navigation/BottomTabNavigator';
 
 const fontConfig = {
   displayLarge: {
@@ -104,70 +96,7 @@ const App = () => {
     <PaperProvider theme={theme}>
       <SafeAreaProvider>
         <NavigationContainer>
-          <BottomTab.Navigator
-            screenOptions={{
-              tabBarLabelStyle: { fontFamily: FONTS.Poppins.regular },
-              tabBarActiveTintColor: COLORS.primary,
-              tabBarInactiveTintColor: "#94A3B8",
-              headerShown: false,
-            }}>
-            <BottomTab.Screen
-              options={{
-                tabBarLabel: 'Anasayfa',
-                tabBarIcon: ({ color, size }) => (
-                  <Icon
-                    source="home-outline"
-                    color={color}
-                    size={size}
-                  />
-                ),
-              }}
-              name="Home"
-              component={HomeScreen}
-            />
-            <BottomTab.Screen
-              options={{
-                tabBarLabel: 'Sepetim',
-                tabBarIcon: ({ color, size }) => (
-                  <Icon
-                    source="cart-outline"
-                    color={color}
-                    size={size}
-                  />
-                ),
-              }}
-              name="Cart"
-              component={CartScreen}
-            />
-            <BottomTab.Screen
-              options={{
-                tabBarLabel: 'Favorilerim',
-                tabBarIcon: ({ color, size }) => (
-                  <Icon
-                    source="cards-heart-outline"
-                    color={color}
-                    size={size}
-                  />
-                ),
-              }}
-              name="Favorites"
-              component={FavoritesScreen}
-            />
-            <BottomTab.Screen
-              options={{
-                tabBarLabel: 'Hesabım',
-                tabBarIcon: ({ color, size }) => (
-                  <Icon
-                    source="account-outline"
-                    color={color}
-                    size={size}
-                  />
-                ),
-              }}
-              name="Account"
-              component={AccountScreen}
-            />
-          </BottomTab.Navigator>
+          <BottomTabNavigator />
         </NavigationContainer>
       </SafeAreaProvider>
     </PaperProvider>

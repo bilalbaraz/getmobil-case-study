@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
-import { View, ScrollView, FlatList } from 'react-native';
+import React, {useRef, useState} from 'react';
+import { View, ScrollView, FlatList, Dimensions, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {Searchbar, Title } from 'react-native-paper';
 import styles from './styles';
 import { FONTS } from '@constants/fonts';
 import ProductCard from '@components/ProductCard';
 import Slide from '@components/Slide';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { HomeStackParamList } from 'presentation/navigation/types';
 
 const dummyProducts = [
   { id: "1", name: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", price: "₺109.95", image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" },
@@ -41,19 +44,26 @@ const Section = ({ title, data }: any) => (
   </View>
 );
 
+type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList, 'Home'>;
+
 const HomeScreen = () => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
   const [searchQuery, setSearchQuery] = useState('');
+  const widthAnim = useRef(new Animated.Value(200)).current;
 
   return (
     <SafeAreaView style={styles.container}>
-      <Searchbar
-        placeholder="Cihaz ara"
-        onChangeText={setSearchQuery}
-        value={searchQuery}
-        mode={'bar'}
-        style={{margin: 10, borderRadius: 5, height: 40}}
-        inputStyle={{paddingTop: 0, fontSize: 13}}
-      />
+      <Animated.View style={{ width: widthAnim }}>
+        <Searchbar
+          placeholder="Cihaz ara"
+          onChangeText={setSearchQuery}
+          value={searchQuery}
+          mode={'bar'}
+          style={{margin: 10, borderRadius: 5, height: 50, width: Dimensions.get('window').width * 0.7}}
+          inputStyle={{fontSize: 13}}
+          onFocus={() => navigation.navigate('Search')}
+        />
+        </Animated.View>
       <ScrollView style={{ flex: 1 }}>
         <Slide slideUri={require('../../../assets/slides/slide1.webp')} />
         <Slide slideUri={require('../../../assets/slides/slide2.webp')} />
