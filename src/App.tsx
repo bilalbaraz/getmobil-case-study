@@ -6,12 +6,28 @@ import BottomTabNavigator from './presentation/navigation/BottomTabNavigator';
 import { NetworkUtils } from '@utils/network';
 import ConnectionStatus from './presentation/components/ConnectionStatus';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { darkTheme, lightTheme } from '@config/theme';
+import { lightTheme } from '@config/theme';
+import { ThemeRepository } from '@repositories/ThemeRepository';
 
 const queryClient = new QueryClient();
 
 const App = () => {
   const [isOnline, setIsOnline] = useState<boolean | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+
+  useEffect(() => {
+    const loadTheme = async () => {
+      const savedTheme = await ThemeRepository.getTheme();
+      setIsDarkMode(savedTheme === 'dark');
+    };
+    loadTheme();
+  }, []);
+
+  const toggleTheme = async () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    await ThemeRepository.saveTheme(newTheme);
+  };
 
   useEffect(() => {
     const unsubscribe = NetworkUtils.addConnectionListener(setIsOnline);
