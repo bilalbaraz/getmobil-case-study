@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Alert, TouchableWithoutFeedback } from 'react-native';
 import { Button } from 'react-native-paper';
 import styles from './styles';
@@ -9,12 +9,37 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { COLORS } from '@constants/colors';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MainStackParamList } from 'presentation/navigation/types';
+import { MainStackParamList } from '@navigation/types';
+import { FavoritedProductsStorage } from '@sources/local/favoritedProductsStorage';
 
 type MainStackNavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
 const ProductCard = ({ item }: ProductCardProps) => {
     const navigation = useNavigation<MainStackNavigationProp>();
+    const [isFavorited, setIsFavorited] = useState<boolean>(false);
+
+    useEffect(() => {
+        const checkFavoriteStatus = async () => {
+            const favoriteStatus = await FavoritedProductsStorage.isFavorited(item.id);
+            setIsFavorited(favoriteStatus);
+        };
+        
+        checkFavoriteStatus();
+    }, [item.id]);
+
+    const handleToggleFavorite = async () => {
+        try {
+            if (isFavorited) {
+                await FavoritedProductsStorage.removeFromFavorites(item.id);
+                setIsFavorited(false);
+            } else {
+                await FavoritedProductsStorage.addToFavorites(item.id);
+                setIsFavorited(true);
+            }
+        } catch (error) {
+            console.error('Error toggling favorite status:', error);
+        }
+    };
 
     return (
         <TouchableWithoutFeedback onPress={() => navigation.navigate('ProductDetail', {item})}>
@@ -26,8 +51,12 @@ const ProductCard = ({ item }: ProductCardProps) => {
                         style={styles.image}
                         resizeMode={FastImage.resizeMode.contain}
                     />
-                    <TouchableOpacity onPress={() => Alert.alert('clicked fav')} style={styles.favoriteButton}>
-                        <Icon name="heart-outline" size={16} color={COLORS.primary} />
+                    <TouchableOpacity onPress={handleToggleFavorite} style={styles.favoriteButton}>
+                        <Icon 
+                            name={isFavorited ? "heart" : "heart-outline"} 
+                            size={16} 
+                            color={isFavorited ? COLORS.error : COLORS.primary} 
+                        />
                     </TouchableOpacity>
                 </View>
                 <View style={styles.contentContainer}>

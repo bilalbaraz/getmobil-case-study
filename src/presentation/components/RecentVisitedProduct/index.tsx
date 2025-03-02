@@ -15,6 +15,7 @@ const RecentVisitedProduct = ({product}: any) => {
         <TouchableOpacity onPress={() => navigation.navigate('ProductDetail', {item: product})}>
             <View style={styles.container}>
                 <FastImage
+                    defaultSource={require('@assets/images/getmobil-sq.webp')}
                     source={{ uri: product.images[0] }} 
                     style={styles.image}
                     resizeMode={FastImage.resizeMode.cover}

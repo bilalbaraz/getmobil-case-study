@@ -15,4 +15,5 @@ export const COLORS = {
     black: '#000000',
     border: '#dcdeed',
     background: '#f2f2f7',
+    error: '#FF3B30',
 };  
