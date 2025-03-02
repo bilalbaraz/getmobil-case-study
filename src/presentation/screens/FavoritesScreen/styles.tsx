@@ -11,6 +11,8 @@ const styles = StyleSheet.create({
     },
     content: {
       flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     title: {
       fontFamily: FONTS.Poppins.bold,

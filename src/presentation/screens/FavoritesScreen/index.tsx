@@ -3,13 +3,12 @@ import { View, Text, FlatList, ActivityIndicator, Dimensions } from 'react-nativ
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 import { Button, Searchbar } from 'react-native-paper';
-import { FavoritedProductsStorage } from '@sources/local/favoritedProductsStorage';
 import { ProductCardProps } from '@props/ProductCardProps';
 import ProductCard from '@components/ProductCard';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 import { COLORS } from '@constants/colors';
-import { ProductApi } from '@sources/remote/productApi';
 import { Alert } from 'react-native';
+import { GetFavoriteProducts } from '@usecases/GetFavoriteProducts';
 
 const { width: screenWidth } = Dimensions.get('window');
 const cardWidth = screenWidth / 2;
@@ -49,21 +48,9 @@ const FavoritesScreen = () => {
   const loadFavoriteProducts = async () => {
     try {
       setLoading(true);
-      const favoriteIds = await FavoritedProductsStorage.getFavorites();
-      
-      if (favoriteIds.length === 0) {
-        setFavoriteProducts([]);
-        setFilteredProducts([]);
-        setLoading(false);
-        return;
-      }
-
-      const productPromises = favoriteIds.map(id => ProductApi.fetchProductById(id));
-      const products = await Promise.all(productPromises);
-
-      const validProducts = products.filter(product => product !== null) as ProductCardProps['item'][];
-      setFavoriteProducts(validProducts);
-      setFilteredProducts(validProducts);
+      const products = await GetFavoriteProducts.execute();
+      setFavoriteProducts(products);
+      setFilteredProducts(products);
     } catch (error) {
       console.error('Error loading favorite products:', error);
     } finally {
@@ -73,11 +60,9 @@ const FavoritesScreen = () => {
 
   const handleFavoriteToggle = (productId: number, isFavorited: boolean) => {
     if (!isFavorited) {
-      // If product was removed from favorites, update the lists
       const updatedProducts = favoriteProducts.filter(product => product.id !== productId);
       setFavoriteProducts(updatedProducts);
       
-      // Also update filtered products if we're searching
       if (searchQuery.trim() !== '') {
         const updatedFiltered = filteredProducts.filter(product => product.id !== productId);
         setFilteredProducts(updatedFiltered);
@@ -86,7 +71,26 @@ const FavoritesScreen = () => {
   };
 
   const navigateToHome = () => {
-    navigation.navigate('Home' as never);
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          { 
+            name: 'BottomTab',
+            state: {
+              routes: [
+                {
+                  name: 'HomeStack',
+                  state: {
+                    routes: [{ name: 'Home' }]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      })
+    );
   };
 
   const onChangeSearch = (query: string) => {
