@@ -15,6 +15,7 @@ module.exports = {
           "@hooks": "./src/hooks",
           "@utils": "./src/utils",
           "@config": "./src/config",
+          "@context": "./src/context",
           "@services": "./src/services",
           "@models": "./src/data/models",
           "@repositories": "./src/data/repositories",

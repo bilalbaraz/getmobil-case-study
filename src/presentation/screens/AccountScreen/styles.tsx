@@ -5,7 +5,6 @@ import { FONTS } from '@constants/fonts';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
   },
   profileContainer: {
     alignItems: 'center',

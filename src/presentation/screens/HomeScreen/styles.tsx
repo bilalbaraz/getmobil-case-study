@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     flex: 1,
-    backgroundColor: COLORS.background,
   },
   content: {
     flex: 1,

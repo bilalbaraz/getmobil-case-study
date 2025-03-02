@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, ScrollView } from "react-native";
 import { List, Avatar, Button, Divider, Text, Switch } from "react-native-paper";
+import { useTheme } from "@context/ThemeContext";
 import styles from './styles';
 
 export default function AccountScreen() {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <ScrollView style={styles.container}>
@@ -54,7 +55,7 @@ export default function AccountScreen() {
           title="Karanlık Mod"
           titleStyle={styles.itemTitle}
           left={(props) => <List.Icon {...props} icon={isDarkMode ? "moon-waning-crescent" : "white-balance-sunny"} />}
-          right={() => <Switch value={isDarkMode} onValueChange={() => setIsDarkMode(!isDarkMode)} />}
+          right={() => <Switch value={isDarkMode} onValueChange={toggleTheme} />}
         />
         <List.Item
           title="Destek Merkezi"

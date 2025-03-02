@@ -8,7 +8,6 @@ const screenWidth = DimensionsHelper.getScreenWidth();
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: COLORS.white,
     },
     scrollContainer: {
       flex: 1,
@@ -114,7 +113,6 @@ const styles = StyleSheet.create({
       bottom: 0,
       left: 0,
       right: 0,
-      backgroundColor: COLORS.white,
       paddingHorizontal: 15,
       paddingTop: 10,
       borderTopWidth: 1,

@@ -12,6 +12,7 @@
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
       "@config/*": ["config/*"],
+      "@context/*": ["context/*"],
       "@services/*": ["services/*"],
       "@models/*": ["data/models/*"],
       "@repositories/*": ["data/repositories/*"],
