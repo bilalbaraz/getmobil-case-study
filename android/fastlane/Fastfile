@@ -27,7 +27,7 @@ platform :android do
   desc "Submit a new Beta Build"
   lane :beta do
     increment_version_code(gradle_file_path: "./app/build.gradle")
-    gradle(task: "clean bundleRelease")
+    gradle(task: "clean assembleRelease")
 
     last_commits = `git log -5 --pretty=format:"%h - %s"`.strip
 
@@ -35,8 +35,9 @@ platform :android do
       app: ENV["FIREBASE_APP_ID"],
       groups: "testers",
       service_credentials_file: "./fastlane/getmobil-case-study-service-acount.json",
-      release_notes: last_commits,
-      aab_path: "../app/build/outputs/bundle/release/app-release.aab"
+      release_notes: last_commits
+      #android_artifact_type: 'AAB',
+      #android_artifact_path: "./app/build/outputs/bundle/release/app-release.aab"
     )
     # crashlytics
   
