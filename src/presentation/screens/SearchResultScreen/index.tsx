@@ -10,8 +10,14 @@ import { useSearchHistory } from '@hooks/useSearchHistory';
 import { Product } from '@models/Product';
 import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
 import { PerformProductSearch } from '@usecases/PerformProductSearch';
+import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
+import { HomeStackParamList } from '@navigation/types';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const cardWidth = DimensionsHelper.getScreenWidth() / 2.03;
+
+type SearchResultScreenRouteProp = RouteProp<HomeStackParamList, 'SearchResult'>;
+type SearchResultScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
 
 const SearchResultScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,14 +27,22 @@ const SearchResultScreen = () => {
   const [widthAnim] = useState(new Animated.Value(DimensionsHelper.getScreenWidth() * 0.97));
 
   const { searchHistory } = useSearchHistory();
+  const route = useRoute<SearchResultScreenRouteProp>();
+  const navigation = useNavigation<SearchResultScreenNavigationProp>();
   
   useEffect(() => {
-    if (searchHistory && searchHistory.length > 0) {
+    if (route.params?.searchQuery) {
+      const queryFromParams = route.params.searchQuery;
+      setSearchQuery(queryFromParams);
+      performSearch(queryFromParams);
+    }
+
+    else if (searchHistory && searchHistory.length > 0) {
       const latestSearchTerm = searchHistory[0];
       setSearchQuery(latestSearchTerm);
       performSearch(latestSearchTerm);
     }
-  }, [searchHistory]);
+  }, [searchHistory, route.params]);
 
   const performSearch = async (query: string) => {
     await PerformProductSearch.execute(query, {
@@ -46,6 +60,7 @@ const SearchResultScreen = () => {
     setSearchQuery('');
     setProducts([]);
     setNoResults(false);
+    navigation.navigate('Search');
   };
 
   return (

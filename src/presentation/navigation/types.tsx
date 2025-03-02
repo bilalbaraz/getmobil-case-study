@@ -13,5 +13,5 @@ export type BottomTabParamList = {
 export type HomeStackParamList = {
     Home: undefined;
     Search: undefined;
-    SearchResult: undefined;
+    SearchResult: { searchQuery?: string };
 };

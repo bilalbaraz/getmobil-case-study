@@ -30,7 +30,7 @@ const SearchScreen = () => {
       if (searchQuery.trim()) {
         addSearchTerm(searchQuery);
         setSearchQuery('');
-        navigation.navigate('SearchResult');
+        navigation.navigate('SearchResult', { searchQuery: searchQuery.trim() });
       }
     };
 
