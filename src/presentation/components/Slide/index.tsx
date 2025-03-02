@@ -1,15 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
-import FastImage from 'react-native-fast-image';
 import styles from './styles';
 import { SlideProps } from '@props/SlideProps';
+import CustomImage from '@components/CustomImage';
 
 const Slide = ({ slideUri }: SlideProps) => (
     <View style={styles.imageContainer}>
-        <FastImage
+        <CustomImage
             style={styles.image}
             source={slideUri}
-            resizeMode={FastImage.resizeMode.contain}
+            isLocalImage={true}
         />
     </View>
 );

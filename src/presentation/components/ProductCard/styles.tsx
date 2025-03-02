@@ -58,6 +58,35 @@ export const createStyles = (cardWidth: number = defaultCardWidth, cardHeight: n
       lineHeight: 10,
       marginBottom: 5,
     },
+    priceContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 4,
+    },
+    price: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      color: COLORS.primary,
+    },
+    originalPrice: {
+      fontSize: 12,
+      color: COLORS.text,
+      textDecorationLine: 'line-through',
+      marginLeft: 5,
+    },
+    addToCartButton: {
+      backgroundColor: COLORS.primary,
+      padding: 8,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderBottomLeftRadius: 8,
+      borderBottomRightRadius: 8,
+    },
+    addToCartText: {
+      color: COLORS.white,
+      fontSize: 12,
+      fontWeight: '600',
+    },
     actionsContainer: {
       flexDirection: 'row',
       padding: 8,

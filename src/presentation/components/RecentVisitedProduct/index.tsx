@@ -1,11 +1,11 @@
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import styles from './styles';
-import FastImage from 'react-native-fast-image';
 import { Text } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainStackParamList } from '@navigation/types';
+import CustomImage from '@components/CustomImage';
 
 type MainStackNavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
@@ -14,11 +14,10 @@ const RecentVisitedProduct = ({product}: any) => {
     return (
         <TouchableOpacity onPress={() => navigation.navigate('ProductDetail', {item: product})}>
             <View style={styles.container}>
-                <FastImage
-                    defaultSource={require('@assets/images/getmobil-sq.webp')}
+                <CustomImage
                     source={{ uri: product.images[0] }} 
                     style={styles.image}
-                    resizeMode={FastImage.resizeMode.cover}
+                    resizeMode="cover"
                 />
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText} numberOfLines={1}>{product.title}</Text>

@@ -5,11 +5,11 @@ import styles from './styles';
 import { Button, Divider, IconButton } from 'react-native-paper';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { MainStackParamList } from '@navigation/types';
-import FastImage from 'react-native-fast-image';
 import { COLORS } from '@constants/colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ManageProductFavorites } from '@usecases/ManageProductFavorites';
 import { useVisitedProductHistory } from '@hooks/useVisitedProductHistory';
+import CustomImage from '@components/CustomImage';
 
 type ProductDetailRouteProp = RouteProp<MainStackParamList, 'ProductDetail'>;
 
@@ -47,11 +47,9 @@ const ProductDetailScreen = () => {
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView style={styles.scrollContainer} contentContainerStyle={{ paddingBottom: 80 }}>
         <View style={styles.imageContainer}>
-          <FastImage
-            defaultSource={require('@assets/images/getmobil-sq.webp')}
+          <CustomImage
             source={{ uri: item.images[0] }}
             style={styles.productImage}
-            resizeMode={FastImage.resizeMode.contain}
           />
           <View style={styles.favoriteButtonContainer}>
             <IconButton

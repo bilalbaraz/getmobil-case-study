@@ -9,6 +9,8 @@ import { useNavigation, CommonActions } from '@react-navigation/native';
 import { COLORS } from '@constants/colors';
 import { Alert } from 'react-native';
 import { GetFavoriteProducts } from '@usecases/GetFavoriteProducts';
+import { UpdateFavoriteProductsList } from '@usecases/UpdateFavoriteProductsList';
+import { SearchProducts } from '@usecases/SearchProducts';
 
 const { width: screenWidth } = Dimensions.get('window');
 const cardWidth = screenWidth / 2;
@@ -31,18 +33,8 @@ const FavoritesScreen = () => {
   }, [navigation]);
 
   useEffect(() => {
-    if (searchQuery.trim() === '') {
-      setFilteredProducts(favoriteProducts);
-    } else {
-      const query = searchQuery.toLowerCase().trim();
-      const filtered = favoriteProducts.filter(product => 
-        product.title.toLowerCase().includes(query) || 
-        product.description.toLowerCase().includes(query) ||
-        product.brand.toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query)
-      );
-      setFilteredProducts(filtered);
-    }
+    const filtered = SearchProducts.execute(favoriteProducts, searchQuery);
+    setFilteredProducts(filtered);
   }, [searchQuery, favoriteProducts]);
 
   const loadFavoriteProducts = async () => {
@@ -60,11 +52,11 @@ const FavoritesScreen = () => {
 
   const handleFavoriteToggle = (productId: number, isFavorited: boolean) => {
     if (!isFavorited) {
-      const updatedProducts = favoriteProducts.filter(product => product.id !== productId);
+      const updatedProducts = UpdateFavoriteProductsList.execute(favoriteProducts, productId);
       setFavoriteProducts(updatedProducts);
       
       if (searchQuery.trim() !== '') {
-        const updatedFiltered = filteredProducts.filter(product => product.id !== productId);
+        const updatedFiltered = UpdateFavoriteProductsList.execute(filteredProducts, productId);
         setFilteredProducts(updatedFiltered);
       }
     }
