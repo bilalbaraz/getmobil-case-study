@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
+        height: 260, 
     },
     imageContainer: {
         padding: 0,
@@ -42,12 +43,14 @@ const styles = StyleSheet.create({
     contentContainer: {
         padding: 10,
         flex: 1,
+        height: 80, 
     },
     title: {
         fontSize: 12,
         lineHeight: 15,
         marginBottom: 5,
         fontWeight: '600',
+        height: 30, 
     },
     paragraph: {
         fontSize: 12,

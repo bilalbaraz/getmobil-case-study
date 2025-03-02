@@ -1,14 +1,30 @@
+import { Review } from "@models/Review";
+import { Tag } from "@models/Tag";
+
 export interface ProductCardProps {
     item: {
       id: number;
       title: string;
-      price: number;
       description: string;
+      price: number;
+      discountPercentage: number;
+      rating: number;
+      stock: number;
+      brand: string;
       category: string;
-      image: string;
-      rating: {
-        rate: number;
-        count: number;
+      thumbnail: string;
+      images: string[];
+      tags: Tag[];
+      sku: string;
+      weight?: number;
+      dimensions: {
+        width: number;
+        height: number;
+        depth: number;
       };
+      warrantyInformation: string;
+      shippingInformation: string;
+      availabilityStatus: string;
+      reviews: Review[];
     };
 };

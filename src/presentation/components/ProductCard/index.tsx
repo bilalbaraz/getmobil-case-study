@@ -21,7 +21,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     <FastImage
-                        source={{ uri: item.image }}
+                        source={{ uri: item.images[0] }}
                         style={styles.image}
                         resizeMode={FastImage.resizeMode.contain}
                     />
@@ -41,7 +41,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
                         <Text style={styles.paragraph}>₺{item.price}</Text>
                     )}
                     {item.rating && (
-                        <Text style={styles.paragraph}>⭐ {item.rating.rate} ({item.rating.count})</Text>
+                        <Text style={styles.paragraph}>⭐ {item.rating}</Text>
                     )}
                 </View>
                 <View style={styles.actionsContainer}>
