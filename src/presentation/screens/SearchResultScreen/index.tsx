@@ -7,9 +7,9 @@ import ProductCard from '@components/ProductCard';
 import { COLORS } from '@constants/colors';
 import { Alert } from 'react-native';
 import { useSearchHistory } from '@hooks/useSearchHistory';
-import { SearchProductsByQuery } from '@usecases/SearchProductsByQuery';
 import { Product } from '@models/Product';
 import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
+import { PerformProductSearch } from '@usecases/PerformProductSearch';
 
 const cardWidth = DimensionsHelper.getScreenWidth() / 2.2;
 
@@ -30,22 +30,11 @@ const SearchResultScreen = () => {
   }, [searchHistory]);
 
   const performSearch = async (query: string) => {
-    if (!query.trim()) return;
-    
-    try {
-      setLoading(true);
-      
-      const result = await SearchProductsByQuery.execute(query);
-      
-      setProducts(result.products);
-      setNoResults(result.noResults);
-    } catch (error) {
-      console.error('Error performing search:', error);
-      setNoResults(true);
-      setProducts([]);
-    } finally {
-      setLoading(false);
-    }
+    await PerformProductSearch.execute(query, {
+      setLoading,
+      setProducts,
+      setNoResults
+    });
   };
 
   const handleSearch = () => {
