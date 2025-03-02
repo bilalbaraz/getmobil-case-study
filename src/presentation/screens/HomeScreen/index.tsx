@@ -17,7 +17,7 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList, 'H
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const [searchQuery, setSearchQuery] = useState('');
-  const { data: products, isLoading, error } = useProducts();
+  const { data: products, isLoading, error } = useProducts(10);
 
   console.log(products);
   return (
