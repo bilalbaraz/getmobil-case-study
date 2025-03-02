@@ -8,11 +8,6 @@ export interface SearchProductsByQueryResult {
 }
 
 export class SearchProductsByQuery {
-  /**
-   * Searches for products using a query string
-   * @param query The search query
-   * @returns A promise with search results, no results flag, and error flag
-   */
   static async execute(query: string): Promise<SearchProductsByQueryResult> {
     if (!query.trim()) {
       return {
@@ -24,10 +19,10 @@ export class SearchProductsByQuery {
     
     try {
       const results = await ProductApi.searchProducts(query);
-      
-      if (results && results.length > 0) {
+
+      if (results && results.products.length > 0) {
         return {
-          products: results,
+          products: results.products,
           noResults: false,
           error: false
         };

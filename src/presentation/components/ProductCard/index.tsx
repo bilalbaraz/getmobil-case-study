@@ -68,7 +68,7 @@ const ProductCard = ({
                     <TouchableOpacity onPress={handleToggleFavorite} style={styles.favoriteButton}>
                         <Icon 
                             name={isFavorited ? "heart" : "heart-outline"} 
-                            size={24} 
+                            size={16}
                             color={isFavorited ? COLORS.error : COLORS.text}
                         />
                     </TouchableOpacity>

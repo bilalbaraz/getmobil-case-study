@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Searchbar } from 'react-native-paper';
 import styles from './styles';
@@ -11,13 +11,14 @@ import { Product } from '@models/Product';
 import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
 import { PerformProductSearch } from '@usecases/PerformProductSearch';
 
-const cardWidth = DimensionsHelper.getScreenWidth() / 2.2;
+const cardWidth = DimensionsHelper.getScreenWidth() / 2.03;
 
 const SearchResultScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [noResults, setNoResults] = useState(false);
+  const [widthAnim] = useState(new Animated.Value(DimensionsHelper.getScreenWidth() * 0.97));
 
   const { searchHistory } = useSearchHistory();
   
@@ -49,16 +50,20 @@ const SearchResultScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Searchbar
-        placeholder="Cihaz ara"
-        onChangeText={setSearchQuery}
-        value={searchQuery}
-        onSubmitEditing={handleSearch}
-        style={styles.searchBar}
-        iconColor={COLORS.primary}
-        clearIcon="close-circle"
-        onClearIconPress={handleClearSearch}
-      />
+      <View style={styles.flexContainer}>
+        <Animated.View style={{ width: widthAnim }}>
+          <Searchbar
+            placeholder="Cihaz ara"
+            onChangeText={setSearchQuery}
+            onSubmitEditing={handleSearch}
+            value={searchQuery}
+            mode={'bar'}
+            style={styles.searchBarContainer}
+            inputStyle={styles.searchBarInput}
+            onClearIconPress={handleClearSearch}
+          />
+        </Animated.View>
+      </View>
       
       {loading ? (
         <View style={styles.loadingContainer}>

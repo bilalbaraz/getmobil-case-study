@@ -47,14 +47,14 @@ const SearchScreen = () => {
         <View style={styles.flexContainer}>
           <Animated.View style={{ width: widthAnim }}>
               <Searchbar
-              placeholder="Cihaz ara"
-              onChangeText={setSearchQuery}
-              onSubmitEditing={handleSearch}
-              value={searchQuery}
-              mode={'bar'}
-              autoFocus
-              style={styles.searchBarContainer}
-              inputStyle={styles.searchBarInput}
+                placeholder="Cihaz ara"
+                onChangeText={setSearchQuery}
+                onSubmitEditing={handleSearch}
+                value={searchQuery}
+                mode={'bar'}
+                autoFocus
+                style={styles.searchBarContainer}
+                inputStyle={styles.searchBarInput}
               />
           </Animated.View>
         </View>

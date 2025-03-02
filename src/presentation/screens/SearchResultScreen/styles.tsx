@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingLeft: 5,
       paddingRight: 5,
-      backgroundColor: COLORS.white,
+      backgroundColor: COLORS.background,
     },
     content: {
       flex: 1,
@@ -27,8 +27,19 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     searchBarContainer: {
-        padding: 10,
-        backgroundColor: COLORS.white,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: COLORS.border,
+        height: 50,
+        marginTop: 5,
+        backgroundColor: COLORS.white
+    },
+    searchBarInput: {
+        fontSize: 13
+    },
+    flexContainer: {
+        display: 'flex',
+        marginBottom: 10,
     },
     searchBar: {
         elevation: 0,
