@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {LIMITS} from '../../../config/limits';
-import { STORAGE_KEYS } from "../../../config/storage_keys";
+import {LIMITS} from '@config/limits';
+import { STORAGE_KEYS } from "@config/storage_keys";
 
 export class SearchHistoryStorage {
   static async addSearchTerm(term: string): Promise<void> {
@@ -12,7 +12,7 @@ export class SearchHistoryStorage {
         newHistory.pop();
       }
 
-      await AsyncStorage.setItem(STORAGE_KEYS.SEARCH_HISTORY, JSON.stringify(newHistory));
+      await AsyncStorage.setItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.SEARCH_HISTORY, JSON.stringify(newHistory));
     } catch (error) {
       console.error("Arama geçmişi eklenirken hata oluştu:", error);
     }
@@ -20,7 +20,7 @@ export class SearchHistoryStorage {
 
   static async getSearchHistory(): Promise<string[]> {
     try {
-      const storedData = await AsyncStorage.getItem(STORAGE_KEYS.SEARCH_HISTORY);
+      const storedData = await AsyncStorage.getItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.SEARCH_HISTORY);
       return storedData ? JSON.parse(storedData) : [];
     } catch (error) {
       console.error("Arama geçmişi alınırken hata oluştu:", error);
@@ -32,7 +32,7 @@ export class SearchHistoryStorage {
     try {
       const history = await SearchHistoryStorage.getSearchHistory();
       const filteredHistory = history.filter((item) => item !== term);
-      await AsyncStorage.setItem(STORAGE_KEYS.SEARCH_HISTORY, JSON.stringify(filteredHistory));
+      await AsyncStorage.setItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.SEARCH_HISTORY, JSON.stringify(filteredHistory));
     } catch (error) {
       console.error("Arama geçmişinden silinirken hata oluştu:", error);
     }
@@ -40,7 +40,7 @@ export class SearchHistoryStorage {
 
   static async clearSearchHistory(): Promise<void> {
     try {
-      await AsyncStorage.removeItem(STORAGE_KEYS.SEARCH_HISTORY);
+      await AsyncStorage.removeItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.SEARCH_HISTORY);
     } catch (error) {
       console.error("Arama geçmişi temizlenirken hata oluştu:", error);
     }

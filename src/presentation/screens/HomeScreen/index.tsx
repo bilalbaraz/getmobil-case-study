@@ -19,7 +19,6 @@ const HomeScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { data: products, isLoading, error } = useProducts(10);
 
-  console.log(products);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
