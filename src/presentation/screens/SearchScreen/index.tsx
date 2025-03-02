@@ -9,6 +9,11 @@ import PopularSearch from '@components/PopularSearch';
 import RecentVisitedProduct from '@components/RecentVisitedProduct';
 import SearchHistory from '@components/SearchHistory';
 import { useSearchHistory } from '@hooks/useSearchHistory';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { HomeStackParamList } from 'presentation/navigation/types';
+
+type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
 
 const dummyRecentVisitedProduct = [
   { id: "1", name: "Apple iPhone 15 Pro Max 256 GB Natürel Titanyum", image: "https://picsum.photos/150?random=1" },
@@ -21,6 +26,7 @@ const dummyRecentVisitedProduct = [
 const renderRecentVisitedProducts = ({item}: any) => <RecentVisitedProduct product={item} />;
 
 const SearchScreen = () => {
+    const navigation = useNavigation<HomeScreenNavigationProp>();
     const [searchQuery, setSearchQuery] = useState('');
     const widthAnim = useRef(new Animated.Value(200)).current;
     const { searchHistory, addSearchTerm } = useSearchHistory();
@@ -29,6 +35,7 @@ const SearchScreen = () => {
       if (searchQuery.trim()) {
         addSearchTerm(searchQuery);
         setSearchQuery('');
+        navigation.navigate('SearchResult');
       }
     };
 

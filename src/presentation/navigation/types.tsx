@@ -1,3 +1,8 @@
+export type MainStackParamList = {
+    BottomTab: undefined;
+    ProductDetail: { id: string };
+};
+
 export type BottomTabParamList = {
     HomeStack: undefined;
     Cart: undefined;
@@ -8,4 +13,5 @@ export type BottomTabParamList = {
 export type HomeStackParamList = {
     Home: undefined;
     Search: undefined;
-  };
+    SearchResult: undefined;
+};
