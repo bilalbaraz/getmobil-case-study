@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Animated } from 'react-native';
+import { View, ScrollView, Animated, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Searchbar } from 'react-native-paper';
 import styles from './styles';
@@ -8,7 +8,7 @@ import Slide from '@components/Slide';
 import Section from '@components/Section';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { HomeStackParamList } from '../../navigation/types';
+import { HomeStackParamList } from '@navigation/types';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useProducts } from '@hooks/useProducts';
 
@@ -17,7 +17,14 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList, 'H
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const [searchQuery, setSearchQuery] = useState('');
-  const { data: products, isLoading, error } = useProducts(10);
+  const [refreshing, setRefreshing] = useState(false);
+  const { data: products, isLoading, error, refetch } = useProducts( 10);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -41,7 +48,17 @@ const HomeScreen = () => {
           </View>
         </View>
       </View>
-      <ScrollView style={styles.scrollViewContainer}>
+      <ScrollView
+        style={styles.scrollViewContainer}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[COLORS.primary]}
+            tintColor={COLORS.primary}
+          />
+        }
+      >
         <Slide slideUri={require('@assets/slides/slide1.webp')} />
         <Slide slideUri={require('@assets/slides/slide2.webp')} />
         <Section 

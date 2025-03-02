@@ -35,7 +35,8 @@ platform :android do
       app: ENV["FIREBASE_APP_ID"],
       groups: "testers",
       service_credentials_file: "./fastlane/getmobil-case-study-service-acount.json",
-      release_notes: last_commits
+      release_notes: last_commits,
+      aab_path: "../app/build/outputs/bundle/release/app-release.aab"
     )
     # crashlytics
   
