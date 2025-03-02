@@ -1,48 +1,16 @@
 import React, { useState } from 'react';
-import { View, ScrollView, FlatList, Animated, ActivityIndicator, Text } from 'react-native';
+import { View, ScrollView, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {Searchbar, Title } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
 import styles from './styles';
-import { FONTS } from '@constants/fonts';
-import ProductCard from '@components/ProductCard';
+import { COLORS } from '@constants/colors';
 import Slide from '@components/Slide';
+import Section from '@components/Section';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { HomeStackParamList } from '../../presentation/navigation/types';
-import { COLORS } from '@constants/colors';
+import { HomeStackParamList } from '../../navigation/types';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useProducts } from '@hooks/useProducts';
-import { Product } from '@models/Product';
-import { SectionProps } from '@types/SectionProps';
-
-const _renderProductCard = ({item}: {item: Product}) => <ProductCard item={item} />;
-
-const Section = ({ title, data, isLoading, error }: SectionProps) => (
-  <View style={{ marginVertical: 5 }}>
-    <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>{title}</Title>
-    {isLoading ? (
-      <View style={{ padding: 20, alignItems: 'center' }}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      </View>
-    ) : error ? (
-      <View style={{ padding: 20, alignItems: 'center' }}>
-        <Text style={{ color: 'red' }}>Ürünler yüklenirken bir hata oluştu</Text>
-      </View>
-    ) : data && data.length > 0 ? (
-      <FlatList
-        horizontal
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={_renderProductCard}
-        showsHorizontalScrollIndicator={false}
-      />
-    ) : (
-      <View style={{ padding: 20, alignItems: 'center' }}>
-        <Text>Ürün bulunamadı</Text>
-      </View>
-    )}
-  </View>
-);
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList, 'Home'>;
 
