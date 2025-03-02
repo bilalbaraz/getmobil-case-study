@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, TouchableWithoutFeedback } from 'react-native';
 import { Button } from 'react-native-paper';
 import styles from './styles';
 import { FONTS } from '@constants/fonts';
@@ -17,7 +17,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
     const navigation = useNavigation<MainStackNavigationProp>();
 
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('ProductDetail', {id: item.id.toString()})}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('ProductDetail', {id: item.id.toString()})}>
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     <FastImage
@@ -55,7 +55,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
                     </Button>
                 </View>
             </View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
     );
 }
 
