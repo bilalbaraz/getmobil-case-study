@@ -26,6 +26,24 @@ const styles = StyleSheet.create({
         lineHeight: 30,
         marginBottom: 20,
     },
+    searchBarContainer: {
+        padding: 10,
+        backgroundColor: COLORS.white,
+    },
+    searchBar: {
+        elevation: 0,
+        backgroundColor: COLORS.background,
+        borderRadius: 10,
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    productList: {
+        paddingHorizontal: 5,
+        paddingVertical: 10,
+    },
 });
 
 export default styles;

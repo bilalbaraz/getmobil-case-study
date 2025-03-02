@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
   emptyText: {
     color: COLORS.text,
   },
+  horizontalList: {
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
 });
 
 export default styles;

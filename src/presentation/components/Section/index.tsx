@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, ActivityIndicator, Text } from 'react-native';
+import { View, FlatList, ActivityIndicator, Text, Dimensions, Alert } from 'react-native';
 import { Title } from 'react-native-paper';
 import { COLORS } from '@constants/colors';
 import { SectionProps } from '@props/SectionProps';
@@ -7,7 +7,18 @@ import { Product } from '@models/Product';
 import ProductCard from '@components/ProductCard';
 import styles from './styles';
 
-const _renderProductCard = ({item}: {item: Product}) => <ProductCard item={item} />;
+const { width: screenWidth } = Dimensions.get('window');
+const horizontalCardWidth = screenWidth * 0.45;
+const horizontalCardHeight = 280;
+
+const _renderProductCard = ({item}: {item: Product}) => (
+  <ProductCard 
+    item={item} 
+    width={horizontalCardWidth} 
+    height={horizontalCardHeight}
+    onAddToCart={() => Alert.alert('Ürün sepete eklendi', item.title)}
+  />
+);
 
 const Section = ({ title, data, isLoading, error }: SectionProps) => (
   <View style={styles.container}>
@@ -27,6 +38,7 @@ const Section = ({ title, data, isLoading, error }: SectionProps) => (
         keyExtractor={(item) => item.id.toString()}
         renderItem={_renderProductCard}
         showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.horizontalList}
       />
     ) : (
       <View style={styles.emptyContainer}>

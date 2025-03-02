@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, TouchableWithoutFeedback } from 'react-native';
+import React, { useEffect, useState, useMemo } from 'react';
+import { View, Text, TouchableOpacity, Alert, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import { Button } from 'react-native-paper';
-import styles from './styles';
+import { createStyles } from './styles';
 import { FONTS } from '@constants/fonts';
-import { ProductCardProps } from '@props/ProductCardProps';
+import { ProductCardComponentProps } from '@props/ProductCardProps';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { COLORS } from '@constants/colors';
@@ -14,9 +14,20 @@ import { FavoritedProductsStorage } from '@sources/local/favoritedProductsStorag
 
 type MainStackNavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
-const ProductCard = ({ item }: ProductCardProps) => {
+const { width: screenWidth } = Dimensions.get('window');
+const defaultCardWidth = screenWidth / 2.2;
+
+const ProductCard = ({
+    item, 
+    width = defaultCardWidth, 
+    height = 260,
+    onAddToCart,
+    onFavoriteToggle
+}: ProductCardComponentProps) => {
     const navigation = useNavigation<MainStackNavigationProp>();
     const [isFavorited, setIsFavorited] = useState<boolean>(false);
+
+    const styles = useMemo(() => createStyles(width, height), [width, height]);
 
     useEffect(() => {
         const checkFavoriteStatus = async () => {
@@ -32,12 +43,26 @@ const ProductCard = ({ item }: ProductCardProps) => {
             if (isFavorited) {
                 await FavoritedProductsStorage.removeFromFavorites(item.id);
                 setIsFavorited(false);
+                if (onFavoriteToggle) {
+                    onFavoriteToggle(item.id, false);
+                }
             } else {
                 await FavoritedProductsStorage.addToFavorites(item.id);
                 setIsFavorited(true);
+                if (onFavoriteToggle) {
+                    onFavoriteToggle(item.id, true);
+                }
             }
         } catch (error) {
             console.error('Error toggling favorite status:', error);
+        }
+    };
+
+    const handleAddToCart = () => {
+        if (onAddToCart) {
+            onAddToCart();
+        } else {
+            Alert.alert('added to cart');
         }
     };
 
@@ -79,7 +104,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
                         mode="outlined"
                         style={styles.button}
                         labelStyle={styles.buttonText}
-                        onPress={() => Alert.alert('added to cart')}
+                        onPress={handleAddToCart}
                     >
                         Sepete Ekle
                     </Button>

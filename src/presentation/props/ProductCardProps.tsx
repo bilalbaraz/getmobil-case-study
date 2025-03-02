@@ -28,3 +28,10 @@ export interface ProductCardProps {
       reviews: Review[];
     };
 };
+
+export interface ProductCardComponentProps extends ProductCardProps {
+    width?: number;
+    height?: number;
+    onAddToCart?: () => void;
+    onFavoriteToggle?: (productId: number, isFavorited: boolean) => void;
+}

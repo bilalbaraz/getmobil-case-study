@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 import { Button, Searchbar } from 'react-native-paper';
@@ -9,6 +9,10 @@ import ProductCard from '@components/ProductCard';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS } from '@constants/colors';
 import { ProductApi } from '@sources/remote/productApi';
+import { Alert } from 'react-native';
+
+const { width: screenWidth } = Dimensions.get('window');
+const cardWidth = screenWidth / 2;
 
 const FavoritesScreen = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -67,6 +71,20 @@ const FavoritesScreen = () => {
     }
   };
 
+  const handleFavoriteToggle = (productId: number, isFavorited: boolean) => {
+    if (!isFavorited) {
+      // If product was removed from favorites, update the lists
+      const updatedProducts = favoriteProducts.filter(product => product.id !== productId);
+      setFavoriteProducts(updatedProducts);
+      
+      // Also update filtered products if we're searching
+      if (searchQuery.trim() !== '') {
+        const updatedFiltered = filteredProducts.filter(product => product.id !== productId);
+        setFilteredProducts(updatedFiltered);
+      }
+    }
+  };
+
   const navigateToHome = () => {
     navigation.navigate('Home' as never);
   };
@@ -108,7 +126,14 @@ const FavoritesScreen = () => {
           {filteredProducts.length > 0 ? (
             <FlatList
               data={filteredProducts}
-              renderItem={({ item }) => <ProductCard item={item} />}
+              renderItem={({ item }) => (
+                <ProductCard 
+                  item={item} 
+                  width={cardWidth} 
+                  onAddToCart={() => Alert.alert('Ürün sepete eklendi', item.title)}
+                  onFavoriteToggle={handleFavoriteToggle}
+                />
+              )}
               keyExtractor={(item) => item.id.toString()}
               numColumns={2}
               contentContainerStyle={styles.productList}
