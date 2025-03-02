@@ -1,6 +1,6 @@
 export type MainStackParamList = {
     BottomTab: undefined;
-    ProductDetail: { id: string };
+    ProductDetail: { item: any };
 };
 
 export type BottomTabParamList = {

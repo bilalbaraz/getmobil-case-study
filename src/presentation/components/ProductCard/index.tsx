@@ -17,7 +17,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
     const navigation = useNavigation<MainStackNavigationProp>();
 
     return (
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('ProductDetail', {id: item.id.toString()})}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('ProductDetail', {item})}>
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     <FastImage

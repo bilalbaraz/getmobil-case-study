@@ -11,16 +11,9 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '@navigation/types';
 import { usePopularSearches } from '@hooks/usePopularSearches';
+import { useVisitedProductHistory } from '@hooks/useVisitedProductHistory';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
-
-const dummyRecentVisitedProduct = [
-  { id: "1", name: "Apple iPhone 15 Pro Max 256 GB Natürel Titanyum", image: "https://picsum.photos/150?random=1" },
-  { id: "2", name: "Samsung Galaxy A51 Pembe 128 GB", image: "https://picsum.photos/150?random=2" },
-  { id: "3", name: "OnePlus 10", image: "https://picsum.photos/150?random=3" },
-  { id: "4", name: "OnePlus 10", image: "https://picsum.photos/150?random=4" },
-  { id: "5", name: "OnePlus 10", image: "https://picsum.photos/150?random=5" },
-];
 
 const renderRecentVisitedProducts = ({item}: any) => <RecentVisitedProduct product={item} />;
 
@@ -29,8 +22,9 @@ const SearchScreen = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const widthAnim = useRef(new Animated.Value(200)).current;
     const { searchHistory, addSearchTerm } = useSearchHistory();
+    const { visitedProductHistory } = useVisitedProductHistory();
     const { popularSearches } = usePopularSearches();
-  
+
     const handleSearch = () => {
       if (searchQuery.trim()) {
         addSearchTerm(searchQuery);
@@ -64,21 +58,25 @@ const SearchScreen = () => {
           </Animated.View>
         </View>
         {searchHistory && searchHistory.length > 0 ? <SearchHistory /> : null}
-        <View style={styles.sectionContainer}>
-          <View style={styles.rowContainer}>
-              <View style={styles.flexItem}>
-                <Title style={styles.sectionTitle}>Son Gezdiğim Ürünler</Title>
+        {
+          visitedProductHistory && visitedProductHistory.length > 0 ? (
+            <View style={styles.sectionContainer}>
+              <View style={styles.rowContainer}>
+                  <View style={styles.flexItem}>
+                    <Title style={styles.sectionTitle}>Son Gezdiğim Ürünler</Title>
+                  </View>
               </View>
-          </View>
-          <View>
-            <FlatList
-                data={dummyRecentVisitedProduct}
-                horizontal
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={renderRecentVisitedProducts}
-              />
-          </View>
-        </View>
+              <View>
+                <FlatList
+                    data={visitedProductHistory}
+                    horizontal
+                    keyExtractor={(item: any) => item.id}
+                    renderItem={renderRecentVisitedProducts}
+                  />
+              </View>
+            </View>
+          ) : null
+        }
         {
           popularSearches.length > 0 ? (
             <View style={styles.sectionContainer}>
