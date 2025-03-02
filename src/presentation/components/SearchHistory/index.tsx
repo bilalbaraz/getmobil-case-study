@@ -15,7 +15,7 @@ const SearchHistory = () => {
           <Title style={styles.title}>Geçmiş Aramalarım</Title>
         </View>
         <View style={styles.clearButtonContainer}>
-          <TouchableOpacity onPress={() => clearSearchHistory}>
+          <TouchableOpacity onPress={() => clearSearchHistory()}>
             <Text style={styles.clearButtonText}>Tümünü Temizle</Text>
           </TouchableOpacity>
         </View>

@@ -22,6 +22,15 @@ export const useSearchHistory = () => {
     },
   });
 
+  const removeSearchTermMutation = useMutation({
+    mutationFn: async (term: string) => {
+      await SearchHistoryRepository.removeSearchTerm(term);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["searchHistory"] });
+    },
+  });
+
   const clearSearchHistoryMutation = useMutation({
     mutationFn: async () => {
       await SearchHistoryRepository.clearSearchHistory();
@@ -31,5 +40,12 @@ export const useSearchHistory = () => {
     },
   });
 
-  return { searchHistory, isLoading, error, addSearchTerm: addSearchTermMutation.mutate, clearSearchHistory: clearSearchHistoryMutation.mutate };
+  return {
+    searchHistory,
+    isLoading,
+    error,
+    addSearchTerm: addSearchTermMutation.mutate,
+    removeSearchTerm: removeSearchTermMutation.mutate,
+    clearSearchHistory: clearSearchHistoryMutation.mutate
+  };
 };

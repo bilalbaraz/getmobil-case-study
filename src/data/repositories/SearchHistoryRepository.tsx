@@ -9,6 +9,10 @@ export class SearchHistoryRepository {
         await SearchHistoryStorage.addSearchTerm(term);
     }
 
+    static async removeSearchTerm(term: string): Promise<void> {
+        await SearchHistoryStorage.removeSearchTerm(term);
+    }
+
     static async clearSearchHistory(): Promise<void> {
         await SearchHistoryStorage.clearSearchHistory();
     }
