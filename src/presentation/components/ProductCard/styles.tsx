@@ -1,7 +1,8 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { COLORS } from '@constants/colors';
+import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
 
-const { width: screenWidth } = Dimensions.get('window');
+const screenWidth = DimensionsHelper.getScreenWidth();
 const defaultCardWidth = screenWidth / 2.2;
 
 export const createStyles = (cardWidth: number = defaultCardWidth, cardHeight: number = 260) => {

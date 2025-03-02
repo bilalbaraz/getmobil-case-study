@@ -1,5 +1,6 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { COLORS } from '@constants/colors';
+import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
 
 export default StyleSheet.create({
   container: {
@@ -8,7 +9,7 @@ export default StyleSheet.create({
     marginVertical: 10,
   },
   box: {
-    width: Dimensions.get('window').width * 0.95,
+    width: DimensionsHelper.getScreenWidth() * 0.95,
     height: 30,
     overflow: 'hidden',
     backgroundColor: COLORS.primary,

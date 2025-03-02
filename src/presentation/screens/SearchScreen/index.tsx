@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Dimensions, FlatList, View } from 'react-native';
+import { Animated, View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 import { Searchbar, Title } from 'react-native-paper';
@@ -12,6 +12,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '@navigation/types';
 import { usePopularSearches } from '@hooks/usePopularSearches';
 import { useVisitedProductHistory } from '@hooks/useVisitedProductHistory';
+import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
 
@@ -35,7 +36,7 @@ const SearchScreen = () => {
 
     useEffect(() => {
       Animated.timing(widthAnim, {
-        toValue: Dimensions.get('window').width * 0.97,
+        toValue: DimensionsHelper.getScreenWidth() * 0.97,
         duration: 500,
         useNativeDriver: false,
       }).start();

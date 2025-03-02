@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingLeft: 5,
       paddingRight: 5,
-      backgroundColor: '#fff',
+      backgroundColor: COLORS.white,
     },
     content: {
       flex: 1,
@@ -43,6 +43,18 @@ const styles = StyleSheet.create({
     productList: {
         paddingHorizontal: 5,
         paddingVertical: 10,
+    },
+    noResultsContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+    noResultsText: {
+        fontFamily: FONTS.Poppins.medium,
+        fontSize: 18,
+        color: COLORS.text,
+        textAlign: 'center',
     },
 });
 

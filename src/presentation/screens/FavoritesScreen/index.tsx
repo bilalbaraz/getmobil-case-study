@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator, Dimensions } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 import { Button, Searchbar } from 'react-native-paper';
@@ -11,9 +11,9 @@ import { Alert } from 'react-native';
 import { GetFavoriteProducts } from '@usecases/GetFavoriteProducts';
 import { UpdateFavoriteProductsList } from '@usecases/UpdateFavoriteProductsList';
 import { SearchProducts } from '@usecases/SearchProducts';
+import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
 
-const { width: screenWidth } = Dimensions.get('window');
-const cardWidth = screenWidth / 2;
+const cardWidth = DimensionsHelper.getScreenWidth() / 2;
 
 const FavoritesScreen = () => {
   const [loading, setLoading] = useState<boolean>(true);

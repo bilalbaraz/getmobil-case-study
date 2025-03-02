@@ -1,9 +1,10 @@
 import { COLORS } from '@constants/colors';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
 
 const styles = StyleSheet.create({
     container: {
-        width: Dimensions.get('window').width * 0.25,
+        width: DimensionsHelper.getScreenWidth() * 0.25,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%', 
-        height: Dimensions.get('window').width * 0.25
+        height: DimensionsHelper.getScreenWidth() * 0.25
     },
     titleContainer: {
         position: 'absolute', 
