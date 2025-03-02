@@ -25,6 +25,35 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: COLORS.text,
     },
+    flexContainer: {
+      display: 'flex',
+    },
+    searchBarContainer: {
+      borderRadius: 5, 
+      borderWidth: 1, 
+      borderColor: COLORS.border, 
+      height: 50, 
+      backgroundColor: COLORS.white
+    },
+    searchBarInput: {
+      fontSize: 13
+    },
+    sectionContainer: {
+      marginTop: 10, 
+      marginBottom: 10
+    },
+    rowContainer: {
+      display: 'flex', 
+      flexDirection: 'row'
+    },
+    flexItem: {
+      flex: 1
+    },
+    sectionTitle: {
+      paddingHorizontal: 15, 
+      fontFamily: FONTS.Poppins.semibold, 
+      fontSize: 16
+    }
 });
 
 export default styles;

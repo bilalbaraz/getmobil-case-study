@@ -3,15 +3,14 @@ import { Animated, Dimensions, FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 import { Searchbar, Title } from 'react-native-paper';
-import { FONTS } from '@constants/fonts';
-import { COLORS } from '@constants/colors';
 import PopularSearch from '@components/PopularSearch';
 import RecentVisitedProduct from '@components/RecentVisitedProduct';
 import SearchHistory from '@components/SearchHistory';
 import { useSearchHistory } from '@hooks/useSearchHistory';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { HomeStackParamList } from 'presentation/navigation/types';
+import { HomeStackParamList } from '@navigation/types';
+import { usePopularSearches } from '@hooks/usePopularSearches';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
 
@@ -30,6 +29,7 @@ const SearchScreen = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const widthAnim = useRef(new Animated.Value(200)).current;
     const { searchHistory, addSearchTerm } = useSearchHistory();
+    const { popularSearches } = usePopularSearches();
   
     const handleSearch = () => {
       if (searchQuery.trim()) {
@@ -49,7 +49,7 @@ const SearchScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-        <View style={{display: 'flex'}}>
+        <View style={styles.flexContainer}>
           <Animated.View style={{ width: widthAnim }}>
               <Searchbar
               placeholder="Cihaz ara"
@@ -58,16 +58,16 @@ const SearchScreen = () => {
               value={searchQuery}
               mode={'bar'}
               autoFocus
-              style={{borderRadius: 5, borderWidth: 1, borderColor: COLORS.border, height: 50, backgroundColor: COLORS.white}}
-              inputStyle={{fontSize: 13}}
+              style={styles.searchBarContainer}
+              inputStyle={styles.searchBarInput}
               />
           </Animated.View>
         </View>
         {searchHistory && searchHistory.length > 0 ? <SearchHistory /> : null}
-        <View style={{marginTop: 10, marginBottom: 10}}>
-          <View style={{display: 'flex', flexDirection: 'row'}}>
-              <View style={{flex: 1}}>
-                <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>Son Gezdiğim Ürünler</Title>
+        <View style={styles.sectionContainer}>
+          <View style={styles.rowContainer}>
+              <View style={styles.flexItem}>
+                <Title style={styles.sectionTitle}>Son Gezdiğim Ürünler</Title>
               </View>
           </View>
           <View>
@@ -79,20 +79,24 @@ const SearchScreen = () => {
               />
           </View>
         </View>
-        <View style={{marginTop: 10, marginBottom: 10}}>
-          <View style={{display: 'flex', flexDirection: 'row'}}>
-              <View style={{flex: 1}}>
-                <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>Popüler Aramalar</Title>
+        {
+          popularSearches.length > 0 ? (
+            <View style={styles.sectionContainer}>
+              <View style={styles.rowContainer}>
+                  <View style={styles.flexItem}>
+                    <Title style={styles.sectionTitle}>Popüler Aramalar</Title>
+                  </View>
               </View>
-          </View>
-          <View>
-            <FlatList
-              data={['bardak altlığı', 'kalem', 'kitap', 'kulaklık', 'süt', 'apple kulaklık']}
-              horizontal
-              renderItem={({item}) => <PopularSearch keyword={item} />}
-            />
-          </View>
-        </View>
+              <View>
+                <FlatList
+                  data={popularSearches}
+                  horizontal
+                  renderItem={({item}) => <PopularSearch keyword={item} />}
+                />
+              </View>
+            </View>
+          ) : null
+        }
     </SafeAreaView>
   );
 };
