@@ -11,6 +11,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '@navigation/types';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useProducts } from '@hooks/useProducts';
+import AnimatedTextSlider from '@components/AnimatedTextSlider';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList, 'Home'>;
 
@@ -60,6 +61,7 @@ const HomeScreen = () => {
         }
       >
         <Slide slideUri={require('@assets/slides/slide1.webp')} />
+        <AnimatedTextSlider />
         <Slide slideUri={require('@assets/slides/slide2.webp')} />
         <Section 
           title="Haftanın Fırsat Ürünleri" 
