@@ -17,9 +17,14 @@ GetMobil, kullanıcıların elektronik cihazları (özellikle cep telefonları) 
 
 Proje, Clean Architecture prensiplerine uygun olarak tasarlanmıştır ve şu katmanları içerir:
 
-- **Presentation**: UI bileşenleri, ekranlar ve görsel elementler
-- **Data**: Veri erişimi, API çağrıları ve yerel depolama
-- **Domain**: İş mantığı ve varlıklar
+- **Presentation**: UI bileşenleri, ekranlar, navigasyon ve görsel elementler
+- **Domain**: İş mantığı, kullanım durumları (use cases) ve varlıklar
+- **Data**: Veri erişimi, API çağrıları, repository'ler ve yerel depolama
+- **Services**: Harici servisler ve API istemcileri
+- **Utils**: Yardımcı fonksiyonlar ve araçlar
+- **Hooks**: Özel React Hooks
+- **Config**: Uygulama yapılandırması ve ayarları
+- **Constants**: Sabit değerler
 
 ## Özellikler
 
@@ -28,6 +33,10 @@ Proje, Clean Architecture prensiplerine uygun olarak tasarlanmıştır ve şu ka
 - Ürün detaylarını inceleme
 - Arama yapma
 - Kategori bazlı filtreleme
+- Arama geçmişi
+- Favori ürünler
+- Sepet işlemleri
+- Kullanıcı hesabı yönetimi
 
 ## Kurulum
 
@@ -88,16 +97,41 @@ yarn lint
 
 ```
 src/
-  ├── assets/         # Resimler, fontlar ve diğer statik dosyalar
-  ├── constants/      # Sabitler ve yapılandırma dosyaları
-  ├── data/           # Veri katmanı
-  │   ├── models/     # Veri modelleri
-  │   └── repositories/ # Repository implementasyonları
-  ├── presentation/   # Sunum katmanı
-  │   ├── components/ # Yeniden kullanılabilir UI bileşenleri
-  │   ├── screens/    # Ekranlar
-  │   └── types/      # TypeScript tipleri ve arayüzleri
-  └── App.tsx         # Ana uygulama bileşeni
+  ├── assets/                # Resimler, fontlar ve diğer statik dosyalar
+  │   ├── fonts/             # Uygulama fontları
+  │   ├── images/            # Uygulama görselleri
+  │   └── slides/            # Slider görselleri
+  ├── config/                # Yapılandırma dosyaları
+  │   ├── api.tsx            # API yapılandırması
+  │   ├── font.tsx           # Font yapılandırması
+  │   ├── limits.tsx         # Limit değerleri
+  │   ├── storage_keys.tsx   # Depolama anahtarları
+  │   └── theme.tsx          # Tema yapılandırması
+  ├── constants/             # Sabit değerler
+  │   ├── colors.tsx         # Renk sabitleri
+  │   └── fonts.tsx          # Font sabitleri
+  ├── data/                  # Veri katmanı
+  │   ├── models/            # Veri modelleri
+  │   ├── repositories/      # Repository implementasyonları
+  │   └── sources/           # Veri kaynakları
+  ├── domain/                # Domain katmanı
+  │   └── usecases/          # Kullanım durumları
+  ├── hooks/                 # Özel React Hooks
+  ├── presentation/          # Sunum katmanı
+  │   ├── components/        # Yeniden kullanılabilir UI bileşenleri
+  │   ├── navigation/        # Navigasyon yapılandırması
+  │   ├── props/             # Bileşen prop tipleri
+  │   └── screens/           # Uygulama ekranları
+  │       ├── AccountScreen/     # Hesap ekranı
+  │       ├── CartScreen/        # Sepet ekranı
+  │       ├── FavoritesScreen/   # Favoriler ekranı
+  │       ├── HomeScreen/        # Ana ekran
+  │       ├── ProductDetailScreen/ # Ürün detay ekranı
+  │       ├── SearchResultScreen/  # Arama sonuçları ekranı
+  │       └── SearchScreen/        # Arama ekranı
+  ├── services/              # Harici servisler
+  ├── utils/                 # Yardımcı fonksiyonlar
+  └── App.tsx                # Ana uygulama bileşeni
 ```
 
 ## Katkıda Bulunma
