@@ -5,7 +5,7 @@ import AccountScreen from "@screens/AccountScreen";
 import CartScreen from "@screens/CartScreen";
 import FavoritesScreen from "@screens/FavoritesScreen";
 import { Icon } from "react-native-paper";
-import HomeStackNavigator from "./HomeStackNavigator";
+import HomeStackNavigator from "@navigation/HomeStackNavigator";
 
 const BottomTab = createBottomTabNavigator();
 

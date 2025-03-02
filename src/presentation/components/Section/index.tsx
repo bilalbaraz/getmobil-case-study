@@ -2,7 +2,7 @@ import React from 'react';
 import { View, FlatList, ActivityIndicator, Text } from 'react-native';
 import { Title } from 'react-native-paper';
 import { COLORS } from '@constants/colors';
-import { SectionProps } from '@types/SectionProps';
+import { SectionProps } from '@props/SectionProps';
 import { Product } from '@models/Product';
 import ProductCard from '@components/ProductCard';
 import styles from './styles';

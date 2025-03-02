@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Alert, TouchableWithoutFeedback } from 'r
 import { Button } from 'react-native-paper';
 import styles from './styles';
 import { FONTS } from '@constants/fonts';
-import { ProductCardProps } from '@types/ProductCardProps';
+import { ProductCardProps } from '@props/ProductCardProps';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { COLORS } from '@constants/colors';
@@ -21,6 +21,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     <FastImage
+                        defaultSource={require('@assets/images/getmobil-sq.webp')}
                         source={{ uri: item.images[0] }}
                         style={styles.image}
                         resizeMode={FastImage.resizeMode.contain}

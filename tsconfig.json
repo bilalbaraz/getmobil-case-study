@@ -3,9 +3,11 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "@assets/*": ["assets/*"],
+      "@navigation/*": ["presentation/navigation/*"],
       "@components/*": ["presentation/components/*"],
       "@screens/*": ["presentation/screens/*"],
-      "@types/*": ["presentation/types/*"],
+      "@props/*": ["presentation/props/*"],
       "@constants/*": ["constants/*"],
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],

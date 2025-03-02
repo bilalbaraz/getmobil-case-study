@@ -6,9 +6,11 @@ module.exports = {
       {
         "root": ["./src"],
         "alias": {
+          "@assets": "./src/assets",
+          "@navigation": "./src/presentation/navigation",
           "@components": "./src/presentation/components",
           "@screens": "./src/presentation/screens",
-          "@types": "./src/presentation/types",
+          "@props": "./src/presentation/props",
           "@constants": "./src/constants",
           "@hooks": "./src/hooks",
           "@utils": "./src/utils",

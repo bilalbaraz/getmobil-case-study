@@ -43,8 +43,8 @@ const HomeScreen = () => {
         </View>
       </View>
       <ScrollView style={styles.scrollViewContainer}>
-        <Slide slideUri={require('../../../assets/slides/slide1.webp')} />
-        <Slide slideUri={require('../../../assets/slides/slide2.webp')} />
+        <Slide slideUri={require('@assets/slides/slide1.webp')} />
+        <Slide slideUri={require('@assets/slides/slide2.webp')} />
         <Section 
           title="Haftanın Fırsat Ürünleri" 
           data={products || []} 

@@ -3,10 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { PaperProvider } from 'react-native-paper';
 import { NetworkUtils } from '@utils/network';
-import ConnectionStatus from './presentation/components/ConnectionStatus';
+import ConnectionStatus from '@components/ConnectionStatus';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lightTheme } from '@config/theme';
-import MainStackNavigator from './presentation/navigation/MainStackNavigator';
+import MainStackNavigator from '@navigation/MainStackNavigator';
 
 const queryClient = new QueryClient();
 
