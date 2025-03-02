@@ -8,15 +8,16 @@ import ProductCard from '@components/ProductCard';
 import Slide from '@components/Slide';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { HomeStackParamList } from 'presentation/navigation/types';
+import { HomeStackParamList } from '../../presentation/navigation/types';
 import { COLORS } from '@constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useProducts } from '@hooks/useProducts';
 import { Product } from '@models/Product';
+import { SectionProps } from '@types/SectionProps';
 
 const _renderProductCard = ({item}: {item: Product}) => <ProductCard item={item} />;
 
-const Section = ({ title, data, isLoading, error }: { title: string, data: any[], isLoading: boolean, error: Error | null }) => (
+const Section = ({ title, data, isLoading, error }: SectionProps) => (
   <View style={{ marginVertical: 5 }}>
     <Title style={{ paddingHorizontal: 15, fontFamily: FONTS.Poppins.semibold, fontSize: 16 }}>{title}</Title>
     {isLoading ? (
