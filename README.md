@@ -15,6 +15,20 @@ GetMobil, kullanıcıların elektronik cihazları (özellikle cep telefonları) 
 - **Firebase**: App Distribution servisi için kullanılmıştır.
 - **DummyJSON API**: Geliştirme ve test amaçlı sahte ürün verileri için kullanılmıştır.
 
+## CI/CD ve Dağıtım
+
+Proje, sürekli entegrasyon ve dağıtım süreçleri için aşağıdaki araçları kullanmaktadır:
+
+- **Fastlane**: Uygulama derleme, test ve dağıtım süreçlerini otomatikleştirmek için kullanılmıştır. Fastlane, tekrarlanan görevleri otomatikleştirerek geliştirme sürecini hızlandırır ve hata olasılığını azaltır.
+
+- **Firebase App Distribution**: Test sürümleri, beta kullanıcıları ile paylaşmak için kullanılmıştır. Firebase App Distribution, uygulamanın yeni sürümlerini hızlı bir şekilde test kullanıcılarına dağıtmayı sağlar.
+
+Bu araçlar sayesinde:
+- Otomatik derleme ve dağıtım süreçleri
+- Sürüm notları ile birlikte test sürümlerinin dağıtımı
+- Test kullanıcılarına e-posta bildirimleri
+- Sürüm yönetimi ve izleme
+
 ## Mimari
 
 Proje, Clean Architecture prensiplerine uygun olarak tasarlanmıştır ve şu katmanları içerir:
