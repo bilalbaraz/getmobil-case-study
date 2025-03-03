@@ -12,6 +12,7 @@ import { GetFavoriteProducts } from '@usecases/GetFavoriteProducts';
 import { UpdateFavoriteProductsList } from '@usecases/UpdateFavoriteProductsList';
 import { SearchProducts } from '@usecases/SearchProducts';
 import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
+import { useTheme } from '@context/ThemeContext';
 
 const cardWidth = DimensionsHelper.getScreenWidth() / 2;
 
@@ -21,6 +22,8 @@ const FavoritesScreen = () => {
   const [filteredProducts, setFilteredProducts] = useState<ProductCardProps['item'][]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const navigation = useNavigation();
+  const { isDarkMode } = useTheme();
+  const textColor = isDarkMode ? COLORS.dark.text : COLORS.light.text;
 
   useEffect(() => {
     loadFavoriteProducts();
@@ -136,14 +139,19 @@ const FavoritesScreen = () => {
             />
           ) : (
             <View style={styles.noResultsContainer}>
-              <Text style={styles.noResultsText}>Arama sonucu bulunamadı.</Text>
+              <Text style={[styles.noResultsText, { color: textColor }]}>Arama sonucu bulunamadı.</Text>
             </View>
           )}
         </>
       ) : (
         <View style={styles.content}>
-          <Text style={styles.text}>Henüz beğendiğiniz ürün bulunmamaktadır.</Text>
-          <Button icon={'cart-outline'} mode="contained" onPress={navigateToHome}>
+          <Text style={[styles.text, { color: textColor }]}>Henüz beğendiğiniz ürün bulunmamaktadır.</Text>
+          <Button 
+            icon={'cart-outline'} 
+            mode="contained" 
+            onPress={navigateToHome}
+            labelStyle={styles.buttonLabelStyle}
+          >
             Alışverişe Başla
           </Button>
         </View>

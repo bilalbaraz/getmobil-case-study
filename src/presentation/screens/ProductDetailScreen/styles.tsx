@@ -140,6 +140,9 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       flex: 1,
     },
+    buttonLabelStyle: {
+      color: COLORS.white,
+    },
     relatedProductsContainer: {
       marginTop: 10,
       paddingBottom: 20,

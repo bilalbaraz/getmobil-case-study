@@ -12,6 +12,7 @@ GetMobil, kullanıcıların elektronik cihazları (özellikle cep telefonları) 
 - **React Native Paper**: Material Design tabanlı UI bileşenleri için kullanılmıştır.
 - **React Native Fast Image**: Performans odaklı resim yükleme için kullanılmıştır.
 - **Firebase**: Backend servisleri için kullanılmıştır.
+- **DummyJSON API**: Geliştirme ve test amaçlı sahte ürün verileri için kullanılmıştır.
 
 ## Mimari
 
@@ -68,7 +69,20 @@ Proje, Clean Architecture prensiplerine uygun olarak tasarlanmıştır ve şu ka
    cd ios && pod install && cd ..
    ```
 
-4. Uygulamayı çalıştırın:
+4. .env dosyasını oluşturun:
+   ```
+   # .env dosyası oluşturun (proje kök dizininde)
+   touch .env
+   ```
+
+   .env dosyasına aşağıdaki değişkeni ekleyin:
+   ```
+   API_BASE_URL=https://dummyjson.com
+   ```
+
+   Not: Proje, ürün verilerini çekmek için dummyjson API'sini kullanmaktadır. Bu API, geliştirme ve test amaçlı sahte ürün verileri sağlar.
+
+5. Uygulamayı çalıştırın:
    ```
    # Android için
    npm run android

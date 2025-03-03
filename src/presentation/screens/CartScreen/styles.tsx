@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
         lineHeight: 30,
         marginBottom: 20,
     },
+    buttonLabelStyle: {
+        color: COLORS.white,
+    },
 });
 
 export default styles;
