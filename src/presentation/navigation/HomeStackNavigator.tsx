@@ -12,7 +12,7 @@ const HomeStackNavigator = () => {
       <HomeStack.Screen name="Search" component={SearchScreen} />
       <HomeStack.Screen name="SearchResult" component={SearchResultScreen} />
     </HomeStack.Navigator>
-    )
+    );
 };
 
 export default HomeStackNavigator;

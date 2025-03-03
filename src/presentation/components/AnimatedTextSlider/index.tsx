@@ -3,13 +3,11 @@ import { View, Text, Animated } from 'react-native';
 import styles from './styles';
 
 const AnimatedTextSlider = () => {
-  const textData = ["İndirimleri kaçırma!", "Özel fırsatlar burada!", "Yeni ürünler eklendi!"];
+  const textData = ['İndirimleri kaçırma!', 'Özel fırsatlar burada!', 'Yeni ürünler eklendi!'];
   const animationValue = useRef(new Animated.Value(0)).current;
   const intervalTime = 1000;
-  
-  useEffect(() => {
-    let index = 0;
 
+  useEffect(() => {
     const startAnimation = () => {
       Animated.timing(animationValue, {
         toValue: -25,

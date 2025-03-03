@@ -6,7 +6,7 @@ export class GetRelatedProducts {
     try {
       const response = await ProductApi.searchProducts(category);
       const products = response.products || [];
-      
+
       const filtered = products.filter((product: any) => product.id !== currentProductId);
       return filtered.slice(0, limit);
     } catch (error) {

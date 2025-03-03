@@ -1,12 +1,12 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { GetSearchHistory } from "@usecases/GetSearchHistory";
-import { SearchHistoryRepository } from "@repositories/SearchHistoryRepository";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { GetSearchHistory } from '@usecases/GetSearchHistory';
+import { SearchHistoryRepository } from '@repositories/SearchHistoryRepository';
 
 export const useSearchHistory = () => {
   const queryClient = useQueryClient();
 
   const { data: searchHistory, isLoading, error } = useQuery({
-    queryKey: ["searchHistory"],
+    queryKey: ['searchHistory'],
     queryFn: async () => {
       const useCase = new GetSearchHistory();
       return await useCase.execute();
@@ -18,7 +18,7 @@ export const useSearchHistory = () => {
       await SearchHistoryRepository.addSearchTerm(term);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["searchHistory"] });
+      queryClient.invalidateQueries({ queryKey: ['searchHistory'] });
     },
   });
 
@@ -27,7 +27,7 @@ export const useSearchHistory = () => {
       await SearchHistoryRepository.removeSearchTerm(term);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["searchHistory"] });
+      queryClient.invalidateQueries({ queryKey: ['searchHistory'] });
     },
   });
 
@@ -36,7 +36,7 @@ export const useSearchHistory = () => {
       await SearchHistoryRepository.clearSearchHistory();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["searchHistory"] });
+      queryClient.invalidateQueries({ queryKey: ['searchHistory'] });
     },
   });
 
@@ -46,6 +46,6 @@ export const useSearchHistory = () => {
     error,
     addSearchTerm: addSearchTermMutation.mutate,
     removeSearchTerm: removeSearchTermMutation.mutate,
-    clearSearchHistory: clearSearchHistoryMutation.mutate
+    clearSearchHistory: clearSearchHistoryMutation.mutate,
   };
 };

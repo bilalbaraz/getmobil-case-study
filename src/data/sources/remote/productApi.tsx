@@ -1,6 +1,6 @@
-import { API_CONFIG } from "@config/api";
+import { API_CONFIG } from '@config/api';
 import axiosInstance from '@services/axiosInstance';
-import { ProductCardProps } from "@props/ProductCardProps";
+import { ProductCardProps } from '@props/ProductCardProps';
 
 export class ProductApi {
   static async fetchProducts(limit: number = 0, skip: number = 0): Promise<any> {
@@ -27,7 +27,7 @@ export class ProductApi {
       const params: Record<string, any> = {
         q: query,
         limit,
-        skip
+        skip,
       };
       const response = await axiosInstance.get(
         `${API_CONFIG.base_url}${API_CONFIG.endpoints.products}/search`,

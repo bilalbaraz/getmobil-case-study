@@ -1,4 +1,4 @@
-import { PopularSearchRepository } from "@repositories/PopularSearchRepository";
+import { PopularSearchRepository } from '@repositories/PopularSearchRepository';
 
 export class GetPopularSearches {
     static execute(): string[] {

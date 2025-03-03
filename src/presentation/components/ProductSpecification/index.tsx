@@ -11,7 +11,7 @@ interface ProductSpecificationProps {
 const ProductSpecification: React.FC<ProductSpecificationProps> = ({
   label,
   value,
-  textColor
+  textColor,
 }) => {
   return (
     <View style={styles.specRow}>

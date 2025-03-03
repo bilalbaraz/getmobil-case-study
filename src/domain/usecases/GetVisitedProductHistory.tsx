@@ -1,4 +1,4 @@
-import { VisitedProductHistoryRepository } from "@repositories/VisitedProductHistoryRepository";
+import { VisitedProductHistoryRepository } from '@repositories/VisitedProductHistoryRepository';
 
 export class GetVisitedProductHistory {
     async execute(): Promise<string[]> {

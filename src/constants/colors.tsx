@@ -16,4 +16,4 @@ export const COLORS = {
     border: '#dcdeed',
     background: '#f2f2f7',
     error: '#FF3B30',
-};  
+};

@@ -6,7 +6,7 @@ export class GetFavoriteProducts {
   static async execute(): Promise<Product[]> {
     try {
       const favoriteIds = await FavoritedProductsStorage.getFavorites();
-      
+
       if (favoriteIds.length === 0) {
         return [];
       }

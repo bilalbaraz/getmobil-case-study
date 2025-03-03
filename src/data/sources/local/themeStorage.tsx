@@ -1,5 +1,5 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { STORAGE_KEYS } from "@config/storage_keys";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { STORAGE_KEYS } from '@config/storage_keys';
 
 export class ThemeStorage {
   static async getTheme () {

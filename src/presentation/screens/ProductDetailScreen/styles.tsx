@@ -143,6 +143,12 @@ const styles = StyleSheet.create({
     buttonLabelStyle: {
       color: COLORS.white,
     },
+    contentContainerStyle: {
+      paddingBottom: 80,
+    },
+    ratingIconStyle: {
+      margin: 0,
+    },
     relatedProductsContainer: {
       marginTop: 10,
       paddingBottom: 20,

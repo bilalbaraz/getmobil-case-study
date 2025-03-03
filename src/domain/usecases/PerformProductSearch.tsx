@@ -99,7 +99,7 @@ export class PerformProductSearch {
           setPaginationInfo({
             skip: skip + result.products.length,
             limit,
-            hasMore
+            hasMore,
           });
         }
       }

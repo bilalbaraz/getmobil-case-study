@@ -1,7 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { STORAGE_KEYS } from "@config/storage_keys";
-import { LIMITS } from "@config/limits";
-import { Product } from "@models/Product";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { STORAGE_KEYS } from '@config/storage_keys';
+import { LIMITS } from '@config/limits';
+import { Product } from '@models/Product';
 
 export class VisitedProductHistoryStorage {
   static async getVisitedProducts(): Promise<string[]> {
@@ -9,7 +9,7 @@ export class VisitedProductHistoryStorage {
       const storedData = await AsyncStorage.getItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.VISITED_PRODUCT_HISTORY);
       return storedData ? JSON.parse(storedData) : [];
     } catch (error) {
-      console.error("Ziyaret edilen ürün geçmişi alınırken hata oluştu:", error);
+      console.error('Ziyaret edilen ürün geçmişi alınırken hata oluştu:', error);
       return [];
     }
   }
@@ -25,7 +25,7 @@ export class VisitedProductHistoryStorage {
 
       await AsyncStorage.setItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.VISITED_PRODUCT_HISTORY, JSON.stringify(newHistory));
     } catch (error) {
-      console.error("Ziyaret edilen ürün geçmişi eklenirken hata oluştu:", error);
+      console.error('Ziyaret edilen ürün geçmişi eklenirken hata oluştu:', error);
     }
   }
 }

@@ -1,11 +1,11 @@
-import { COLORS } from "@constants/colors";
-import { FONTS } from "@constants/fonts";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import AccountScreen from "@screens/AccountScreen";
-import CartScreen from "@screens/CartScreen";
-import FavoritesScreen from "@screens/FavoritesScreen";
-import { Icon } from "react-native-paper";
-import HomeStackNavigator from "@navigation/HomeStackNavigator";
+import { COLORS } from '@constants/colors';
+import { FONTS } from '@constants/fonts';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AccountScreen from '@screens/AccountScreen';
+import CartScreen from '@screens/CartScreen';
+import FavoritesScreen from '@screens/FavoritesScreen';
+import { Icon } from 'react-native-paper';
+import HomeStackNavigator from '@navigation/HomeStackNavigator';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -15,9 +15,9 @@ const BottomTabNavigator = () => {
             screenOptions={{
               tabBarLabelStyle: { fontFamily: FONTS.Poppins.regular },
               tabBarActiveTintColor: COLORS.primary,
-              tabBarInactiveTintColor: "#94A3B8",
+              tabBarInactiveTintColor: '#94A3B8',
               headerShown: false,
-              animation: 'none'
+              animation: 'none',
             }}>
             <BottomTab.Screen
               options={{
@@ -76,7 +76,7 @@ const BottomTabNavigator = () => {
               component={AccountScreen}
             />
           </BottomTab.Navigator>
-    )
+    );
 };
 
 export default BottomTabNavigator;

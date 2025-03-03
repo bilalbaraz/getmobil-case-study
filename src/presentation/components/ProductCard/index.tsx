@@ -19,11 +19,11 @@ const ProductCard = ({
     width = 180,
     height = 260,
     onAddToCart,
-    onFavoriteToggle
+    onFavoriteToggle,
 }: ProductCardComponentProps) => {
     const navigation = useNavigation<MainStackNavigationProp>();
     const [isFavorited, setIsFavorited] = useState<boolean>(false);
-    
+
     const styles = useMemo(() => createStyles(width, height), [width, height]);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const ProductCard = ({
             const favoriteStatus = await CheckFavoriteStatus.execute(item.id);
             setIsFavorited(favoriteStatus);
         };
-        
+
         checkFavoriteStatus();
     }, [item.id]);
 
@@ -39,7 +39,7 @@ const ProductCard = ({
         try {
             const newFavoriteStatus = await ToggleFavorite.execute(item.id);
             setIsFavorited(newFavoriteStatus);
-            
+
             if (onFavoriteToggle) {
                 onFavoriteToggle(item.id, newFavoriteStatus);
             }
@@ -66,15 +66,15 @@ const ProductCard = ({
                         resizeMode="contain"
                     />
                     <TouchableOpacity onPress={handleToggleFavorite} style={styles.favoriteButton}>
-                        <Icon 
-                            name={isFavorited ? "heart" : "heart-outline"} 
+                        <Icon
+                            name={isFavorited ? 'heart' : 'heart-outline'}
                             size={16}
                             color={isFavorited ? COLORS.error : COLORS.text}
                         />
                     </TouchableOpacity>
                 </View>
                 <View style={styles.contentContainer}>
-                    <Text 
+                    <Text
                         style={[styles.title, {fontFamily: FONTS.Poppins.semibold}]}
                         numberOfLines={2}
                         ellipsizeMode="tail"

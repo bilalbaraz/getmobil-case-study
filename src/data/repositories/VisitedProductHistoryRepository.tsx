@@ -1,5 +1,5 @@
-import { Product } from "@models/Product";
-import { VisitedProductHistoryStorage } from "@sources/local/visitedProductHistoryStorage";
+import { Product } from '@models/Product';
+import { VisitedProductHistoryStorage } from '@sources/local/visitedProductHistoryStorage';
 
 export class VisitedProductHistoryRepository {
     static async getVisitedProducts(): Promise<string[]> {

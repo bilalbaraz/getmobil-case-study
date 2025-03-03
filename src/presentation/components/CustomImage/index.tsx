@@ -19,10 +19,10 @@ const CustomImage: React.FC<CustomImageProps> = ({
   style,
   isLocalImage = false,
 }) => {
-  const imageSource = isLocalImage 
-    ? source 
-    : typeof source === 'number' 
-      ? source 
+  const imageSource = isLocalImage
+    ? source
+    : typeof source === 'number'
+      ? source
       : { uri: (source as Source).uri };
 
   const getFastImageResizeMode = (mode: string): ResizeMode => {

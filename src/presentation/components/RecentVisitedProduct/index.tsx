@@ -15,7 +15,7 @@ const RecentVisitedProduct = ({product}: any) => {
         <TouchableOpacity onPress={() => navigation.navigate('ProductDetail', {item: product})}>
             <View style={styles.container}>
                 <CustomImage
-                    source={{ uri: product.images[0] }} 
+                    source={{ uri: product.images[0] }}
                     style={styles.image}
                     resizeMode="cover"
                 />
@@ -24,7 +24,7 @@ const RecentVisitedProduct = ({product}: any) => {
                 </View>
             </View>
         </TouchableOpacity>
-    )
+    );
 };
 
 export default RecentVisitedProduct;

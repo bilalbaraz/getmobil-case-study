@@ -17,20 +17,20 @@ const CartScreen = () => {
       CommonActions.reset({
         index: 0,
         routes: [
-          { 
+          {
             name: 'BottomTab',
             state: {
               routes: [
                 {
                   name: 'HomeStack',
                   state: {
-                    routes: [{ name: 'Home' }]
-                  }
-                }
-              ]
-            }
-          }
-        ]
+                    routes: [{ name: 'Home' }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
       })
     );
   };
@@ -40,9 +40,9 @@ const CartScreen = () => {
       <View style={styles.content}>
         <Text style={[styles.title, { color: textColor }]}>Sepetiniz Boş</Text>
         <Text style={[styles.text, { color: textColor }]}>Fırsatlara hemen göz atmak ister misin?</Text>
-        <Button 
-          icon={'cart-outline'} 
-          mode="contained" 
+        <Button
+          icon={'cart-outline'}
+          mode="contained"
           onPress={navigateToHome}
           labelStyle={styles.buttonLabelStyle}
         >

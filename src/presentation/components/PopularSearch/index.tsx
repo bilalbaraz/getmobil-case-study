@@ -26,7 +26,7 @@ const PopularSearch = ({ keyword }: any) => {
                     <Icon name="search-outline" color="#373A40" size={20} />
                 </View>
                 <View style={styles.flex1}>
-                    <Text variant="labelSmall" style={{color: '#373A40'}}>{keyword}</Text>
+                    <Text variant="labelSmall" style={styles.textStyle}>{keyword}</Text>
                 </View>
             </View>
         </TouchableOpacity>

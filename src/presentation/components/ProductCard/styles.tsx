@@ -101,7 +101,7 @@ export const createStyles = (cardWidth: number = defaultCardWidth, cardHeight: n
     buttonText: {
       fontSize: 12,
       fontWeight: '500',
-    }
+    },
   });
 };
 

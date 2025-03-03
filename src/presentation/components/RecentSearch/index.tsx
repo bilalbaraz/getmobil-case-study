@@ -16,12 +16,12 @@ const RecentSearch = ({ keyword }: any) => {
     const handleSearchPress = () => {
         navigation.navigate('SearchResult', { searchQuery: keyword });
     };
-    
+
     return (
         <TouchableOpacity onPress={handleSearchPress}>
             <View style={styles.container}>
                 <View style={styles.flex1}>
-                    <Text variant="labelSmall" style={{color: '#373A40'}}>{keyword}</Text>
+                    <Text variant="labelSmall" style={styles.textStyle}>{keyword}</Text>
                 </View>
                 <View style={styles.flex1}>
                     <TouchableOpacity onPress={(e) => {

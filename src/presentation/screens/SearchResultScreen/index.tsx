@@ -29,13 +29,13 @@ const SearchResultScreen = () => {
   const [paginationInfo, setPaginationInfo] = useState<PaginationInfo>({
     skip: 0,
     limit: 10,
-    hasMore: true
+    hasMore: true,
   });
 
   const { searchHistory } = useSearchHistory();
   const route = useRoute<SearchResultScreenRouteProp>();
   const navigation = useNavigation<SearchResultScreenNavigationProp>();
-  
+
   useEffect(() => {
     if (route.params?.searchQuery) {
       const queryFromParams = route.params.searchQuery;
@@ -53,9 +53,9 @@ const SearchResultScreen = () => {
     setPaginationInfo({
       skip: 0,
       limit: 10,
-      hasMore: true
+      hasMore: true,
     });
-    
+
     performSearch(query);
   };
 
@@ -67,16 +67,16 @@ const SearchResultScreen = () => {
         setLoading,
         setProducts,
         setNoResults,
-        setPaginationInfo
+        setPaginationInfo,
       }
     );
   };
 
   const loadMoreProducts = async () => {
-    if (!paginationInfo.hasMore || loading || loadingMore) return;
-    
+    if (!paginationInfo.hasMore || loading || loadingMore) {return;}
+
     setLoadingMore(true);
-    
+
     await PerformProductSearch.executeWithPagination(
       searchQuery,
       paginationInfo,
@@ -84,11 +84,11 @@ const SearchResultScreen = () => {
         setLoading,
         setProducts,
         setNoResults,
-        setPaginationInfo
+        setPaginationInfo,
       },
       true
     );
-    
+
     setLoadingMore(false);
   };
 
@@ -104,8 +104,8 @@ const SearchResultScreen = () => {
   };
 
   const renderFooter = () => {
-    if (!loadingMore) return null;
-    
+    if (!loadingMore) {return null;}
+
     return (
       <View style={styles.footerLoader}>
         <ActivityIndicator size="small" color={COLORS.primary} />
@@ -129,7 +129,7 @@ const SearchResultScreen = () => {
           />
         </Animated.View>
       </View>
-      
+
       {loading ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={COLORS.primary} />
@@ -142,9 +142,9 @@ const SearchResultScreen = () => {
         <FlatList
           data={products}
           renderItem={({ item }) => (
-            <ProductCard 
-              item={item} 
-              width={cardWidth} 
+            <ProductCard
+              item={item}
+              width={cardWidth}
               onAddToCart={() => Alert.alert('Ürün sepete eklendi', item.title)}
             />
           )}

@@ -14,11 +14,11 @@ export class SearchProducts {
     if (query.trim() === '') {
       return products;
     }
-    
+
     const normalizedQuery = query.toLowerCase().trim();
-    
-    return products.filter(product => 
-      product.title.toLowerCase().includes(normalizedQuery) || 
+
+    return products.filter(product =>
+      product.title.toLowerCase().includes(normalizedQuery) ||
       product.description.toLowerCase().includes(normalizedQuery) ||
       product.brand.toLowerCase().includes(normalizedQuery) ||
       product.category.toLowerCase().includes(normalizedQuery)

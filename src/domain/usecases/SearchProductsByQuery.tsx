@@ -13,10 +13,10 @@ export class SearchProductsByQuery {
       return {
         products: [],
         noResults: true,
-        error: false
+        error: false,
       };
     }
-    
+
     try {
       const results = await ProductApi.searchProducts(query);
 
@@ -24,13 +24,13 @@ export class SearchProductsByQuery {
         return {
           products: results.products,
           noResults: false,
-          error: false
+          error: false,
         };
       } else {
         return {
           products: [],
           noResults: true,
-          error: false
+          error: false,
         };
       }
     } catch (error) {
@@ -38,24 +38,24 @@ export class SearchProductsByQuery {
       return {
         products: [],
         noResults: true,
-        error: true
+        error: true,
       };
     }
   }
 
   static async executeWithPagination(
-    query: string, 
-    limit: number = 20, 
+    query: string,
+    limit: number = 20,
     skip: number = 0
   ): Promise<SearchProductsByQueryResult> {
     if (!query.trim()) {
       return {
         products: [],
         noResults: true,
-        error: false
+        error: false,
       };
     }
-    
+
     try {
       const results = await ProductApi.searchProducts(query, limit, skip);
 
@@ -63,13 +63,13 @@ export class SearchProductsByQuery {
         return {
           products: results.products,
           noResults: false,
-          error: false
+          error: false,
         };
       } else {
         return {
           products: [],
           noResults: true,
-          error: false
+          error: false,
         };
       }
     } catch (error) {
@@ -77,7 +77,7 @@ export class SearchProductsByQuery {
       return {
         products: [],
         noResults: true,
-        error: true
+        error: true,
       };
     }
   }

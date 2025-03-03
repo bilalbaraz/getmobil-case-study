@@ -15,24 +15,24 @@ const styles = StyleSheet.create({
         padding: 0,
         borderRadius: 5,
         overflow: 'hidden',
-        marginLeft: 5
+        marginLeft: 5,
     },
     image: {
-        width: '100%', 
-        height: DimensionsHelper.getScreenWidth() * 0.25
+        width: '100%',
+        height: DimensionsHelper.getScreenWidth() * 0.25,
     },
     titleContainer: {
-        position: 'absolute', 
-        bottom: 0, 
-        left: 0, 
-        right: 0, 
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-        padding: 5
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        padding: 5,
     },
     titleText: {
-        color: COLORS.white, 
-        fontSize: 12, 
-        fontWeight: '500'
+        color: COLORS.white,
+        fontSize: 12,
+        fontWeight: '500',
     },
     flex1: {flex: 1},
 });

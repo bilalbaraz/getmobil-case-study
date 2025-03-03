@@ -1,6 +1,6 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LIMITS} from '@config/limits';
-import { STORAGE_KEYS } from "@config/storage_keys";
+import { STORAGE_KEYS } from '@config/storage_keys';
 
 export class SearchHistoryStorage {
   static async addSearchTerm(term: string): Promise<void> {
@@ -14,7 +14,7 @@ export class SearchHistoryStorage {
 
       await AsyncStorage.setItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.SEARCH_HISTORY, JSON.stringify(newHistory));
     } catch (error) {
-      console.error("Arama geçmişi eklenirken hata oluştu:", error);
+      console.error('Arama geçmişi eklenirken hata oluştu:', error);
     }
   }
 
@@ -23,7 +23,7 @@ export class SearchHistoryStorage {
       const storedData = await AsyncStorage.getItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.SEARCH_HISTORY);
       return storedData ? JSON.parse(storedData) : [];
     } catch (error) {
-      console.error("Arama geçmişi alınırken hata oluştu:", error);
+      console.error('Arama geçmişi alınırken hata oluştu:', error);
       return [];
     }
   }
@@ -34,7 +34,7 @@ export class SearchHistoryStorage {
       const filteredHistory = history.filter((item) => item !== term);
       await AsyncStorage.setItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.SEARCH_HISTORY, JSON.stringify(filteredHistory));
     } catch (error) {
-      console.error("Arama geçmişinden silinirken hata oluştu:", error);
+      console.error('Arama geçmişinden silinirken hata oluştu:', error);
     }
   }
 
@@ -42,7 +42,7 @@ export class SearchHistoryStorage {
     try {
       await AsyncStorage.removeItem(STORAGE_KEYS.PREFIX + ':' + STORAGE_KEYS.SEARCH_HISTORY);
     } catch (error) {
-      console.error("Arama geçmişi temizlenirken hata oluştu:", error);
+      console.error('Arama geçmişi temizlenirken hata oluştu:', error);
     }
   }
 }

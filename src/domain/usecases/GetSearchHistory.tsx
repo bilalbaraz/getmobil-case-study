@@ -1,4 +1,4 @@
-import { SearchHistoryRepository } from "@repositories/SearchHistoryRepository";
+import { SearchHistoryRepository } from '@repositories/SearchHistoryRepository';
 
 export class GetSearchHistory {
     async execute(): Promise<string[]> {

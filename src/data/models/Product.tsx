@@ -1,5 +1,5 @@
-import { Review } from "./Review";
-import { Tag } from "./Tag";
+import { Review } from './Review';
+import { Tag } from './Tag';
 
 export interface Product {
     id: number;

@@ -12,7 +12,7 @@ export class ToggleFavorite {
   static async execute(productId: number): Promise<boolean> {
     try {
       const isFavorited = await FavoritedProductsStorage.isFavorited(productId);
-      
+
       if (isFavorited) {
         await FavoritedProductsStorage.removeFromFavorites(productId);
         return false;

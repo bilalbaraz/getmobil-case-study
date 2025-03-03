@@ -13,9 +13,9 @@ const horizontalCardWidth = screenWidth * 0.45;
 const horizontalCardHeight = 280;
 
 const _renderProductCard = ({item}: {item: Product}) => (
-  <ProductCard 
-    item={item} 
-    width={horizontalCardWidth} 
+  <ProductCard
+    item={item}
+    width={horizontalCardWidth}
     height={horizontalCardHeight}
     onAddToCart={() => Alert.alert('Ürün sepete eklendi', item.title)}
   />

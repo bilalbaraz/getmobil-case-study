@@ -10,7 +10,7 @@ const MainStackNavigator = () => {
         <MainStack.Screen name="BottomTab" component={BottomTabNavigator} />
         <MainStack.Screen name="ProductDetail" component={ProductDetailScreen} />
       </MainStack.Navigator>
-    )
+    );
 };
 
 export default MainStackNavigator;

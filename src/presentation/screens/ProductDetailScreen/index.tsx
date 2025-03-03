@@ -50,7 +50,10 @@ const ProductDetailScreen = () => {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <ScrollView style={styles.scrollContainer} contentContainerStyle={{ paddingBottom: 80 }}>
+      <ScrollView
+        style={styles.scrollContainer}
+        contentContainerStyle={styles.contentContainerStyle}
+      >
         <View style={styles.imageContainer}>
           <CustomImage
             source={{ uri: item.images[0] }}
@@ -68,24 +71,29 @@ const ProductDetailScreen = () => {
         </View>
 
         <View style={styles.detailsContainer}>
-          <Text style={styles.brand}>{item.brand}</Text>
+          <Text style={[styles.brand, { color: textColor }]}>{item.brand}</Text>
           <Text style={[styles.title, { color: textColor }]}>{item.title}</Text>
-          
+
           <View style={styles.priceRatingContainer}>
             <Text style={[styles.price, { color: textColor }]}>{item.price} TL</Text>
             <View style={styles.ratingContainer}>
-              <IconButton icon="star" size={16} iconColor="#FFD700" style={{ margin: 0 }} />
+              <IconButton
+                icon="star"
+                size={16}
+                iconColor="#FFD700"
+                style={styles.ratingIconStyle}
+              />
               <Text style={[styles.rating, { color: textColor }]}>{item.rating}</Text>
             </View>
           </View>
-          
+
           <Divider style={styles.divider} />
-          
+
           <Text style={[styles.sectionTitle, { color: textColor }]}>Ürün Açıklaması</Text>
           <Text style={[styles.description, { color: textColor }]}>{item.description}</Text>
-          
+
           <Divider style={styles.divider} />
-          
+
           <Text style={[styles.sectionTitle, { color: textColor }]}>Ürün Özellikleri</Text>
           <View style={styles.specsContainer}>
             <ProductSpecification label="Kategori:" value={item.category} textColor={textColor} />
@@ -95,23 +103,23 @@ const ProductDetailScreen = () => {
           </View>
         </View>
       </ScrollView>
-      
+
       <View style={[
-        styles.bottomButtonContainer, 
-        { 
+        styles.bottomButtonContainer,
+        {
           paddingBottom: insets.bottom || 16,
           backgroundColor: backgroundColor,
-          borderTopColor: isDarkMode ? '#333333' : COLORS.border
-        }
+          borderTopColor: isDarkMode ? '#333333' : COLORS.border,
+        },
       ]}>
         <View style={styles.priceContainer}>
           <Text style={[styles.bottomPrice, { color: textColor }]}>{item.price} TL</Text>
           {item.discountPercentage > 0 && (
-            <Text style={styles.discountText}>%{item.discountPercentage} İndirim</Text>
+            <Text style={[styles.discountText, { color: textColor }]}>%{item.discountPercentage} İndirim</Text>
           )}
         </View>
-        <Button 
-          mode="contained" 
+        <Button
+          mode="contained"
           style={styles.addToCartButton}
           icon="cart-outline"
           onPress={handleAddToCart}

@@ -63,17 +63,17 @@ const HomeScreen = () => {
         <Slide slideUri={require('@assets/slides/slide1.webp')} />
         <AnimatedTextSlider />
         <Slide slideUri={require('@assets/slides/slide2.webp')} />
-        <Section 
-          title="Haftanın Fırsat Ürünleri" 
-          data={products || []} 
-          isLoading={isLoading} 
-          error={error} 
+        <Section
+          title="Haftanın Fırsat Ürünleri"
+          data={products || []}
+          isLoading={isLoading}
+          error={error}
         />
-        <Section 
-          title="Çok Beğenilen Yenilenmiş Telefonlar" 
-          data={products || []} 
-          isLoading={isLoading} 
-          error={error} 
+        <Section
+          title="Çok Beğenilen Yenilenmiş Telefonlar"
+          data={products || []}
+          isLoading={isLoading}
+          error={error}
         />
       </ScrollView>
     </SafeAreaView>

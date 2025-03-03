@@ -1,5 +1,5 @@
-import { Review } from "@models/Review";
-import { Tag } from "@models/Tag";
+import { Review } from '@models/Review';
+import { Tag } from '@models/Tag';
 
 export interface ProductCardProps {
     item: {
@@ -27,7 +27,7 @@ export interface ProductCardProps {
       availabilityStatus: string;
       reviews: Review[];
     };
-};
+}
 
 export interface ProductCardComponentProps extends ProductCardProps {
     width?: number;

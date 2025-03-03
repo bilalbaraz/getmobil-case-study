@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
         borderColor: COLORS.border,
         height: 50,
         marginTop: 5,
-        backgroundColor: COLORS.white
+        backgroundColor: COLORS.white,
     },
     searchBarInput: {
-        fontSize: 13
+        fontSize: 13,
     },
     flexContainer: {
         display: 'flex',
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
 });
 
 export default styles;
