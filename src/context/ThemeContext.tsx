@@ -42,7 +42,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
           setIsDarkMode(deviceTheme === 'dark');
         }
       };
-      
+
       checkTheme();
     }
   }, [deviceTheme, isLoading]);

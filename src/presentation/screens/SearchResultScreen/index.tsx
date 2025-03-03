@@ -9,7 +9,7 @@ import { Alert } from 'react-native';
 import { useSearchHistory } from '@hooks/useSearchHistory';
 import { Product } from '@models/Product';
 import { DimensionsHelper } from '@utils/helpers/dimensionsHelper';
-import { PerformProductSearch } from '@usecases/PerformProductSearch';
+import { PerformProductSearch, PaginationInfo } from '@usecases/PerformProductSearch';
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { HomeStackParamList } from '@navigation/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -23,8 +23,14 @@ const SearchResultScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [noResults, setNoResults] = useState(false);
   const [widthAnim] = useState(new Animated.Value(DimensionsHelper.getScreenWidth() * 0.97));
+  const [paginationInfo, setPaginationInfo] = useState<PaginationInfo>({
+    skip: 0,
+    limit: 10,
+    hasMore: true
+  });
 
   const { searchHistory } = useSearchHistory();
   const route = useRoute<SearchResultScreenRouteProp>();
@@ -34,26 +40,60 @@ const SearchResultScreen = () => {
     if (route.params?.searchQuery) {
       const queryFromParams = route.params.searchQuery;
       setSearchQuery(queryFromParams);
-      performSearch(queryFromParams);
+      resetAndSearch(queryFromParams);
     }
-
     else if (searchHistory && searchHistory.length > 0) {
       const latestSearchTerm = searchHistory[0];
       setSearchQuery(latestSearchTerm);
-      performSearch(latestSearchTerm);
+      resetAndSearch(latestSearchTerm);
     }
   }, [searchHistory, route.params]);
 
-  const performSearch = async (query: string) => {
-    await PerformProductSearch.execute(query, {
-      setLoading,
-      setProducts,
-      setNoResults
+  const resetAndSearch = (query: string) => {
+    setPaginationInfo({
+      skip: 0,
+      limit: 10,
+      hasMore: true
     });
+    
+    performSearch(query);
+  };
+
+  const performSearch = async (query: string) => {
+    await PerformProductSearch.executeWithPagination(
+      query,
+      { ...paginationInfo, skip: 0 },
+      {
+        setLoading,
+        setProducts,
+        setNoResults,
+        setPaginationInfo
+      }
+    );
+  };
+
+  const loadMoreProducts = async () => {
+    if (!paginationInfo.hasMore || loading || loadingMore) return;
+    
+    setLoadingMore(true);
+    
+    await PerformProductSearch.executeWithPagination(
+      searchQuery,
+      paginationInfo,
+      {
+        setLoading,
+        setProducts,
+        setNoResults,
+        setPaginationInfo
+      },
+      true
+    );
+    
+    setLoadingMore(false);
   };
 
   const handleSearch = () => {
-    performSearch(searchQuery);
+    resetAndSearch(searchQuery);
   };
 
   const handleClearSearch = () => {
@@ -61,6 +101,16 @@ const SearchResultScreen = () => {
     setProducts([]);
     setNoResults(false);
     navigation.navigate('Search');
+  };
+
+  const renderFooter = () => {
+    if (!loadingMore) return null;
+    
+    return (
+      <View style={styles.footerLoader}>
+        <ActivityIndicator size="small" color={COLORS.primary} />
+      </View>
+    );
   };
 
   return (
@@ -101,6 +151,9 @@ const SearchResultScreen = () => {
           keyExtractor={(item) => item.id.toString()}
           numColumns={2}
           contentContainerStyle={styles.productList}
+          onEndReached={loadMoreProducts}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={renderFooter}
         />
       )}
     </SafeAreaView>

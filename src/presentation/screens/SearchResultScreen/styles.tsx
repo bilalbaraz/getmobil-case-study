@@ -66,6 +66,11 @@ const styles = StyleSheet.create({
         color: COLORS.text,
         textAlign: 'center',
     },
+    footerLoader: {
+        paddingVertical: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 });
 
 export default styles;

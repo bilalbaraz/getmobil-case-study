@@ -42,4 +42,43 @@ export class SearchProductsByQuery {
       };
     }
   }
+
+  static async executeWithPagination(
+    query: string, 
+    limit: number = 20, 
+    skip: number = 0
+  ): Promise<SearchProductsByQueryResult> {
+    if (!query.trim()) {
+      return {
+        products: [],
+        noResults: true,
+        error: false
+      };
+    }
+    
+    try {
+      const results = await ProductApi.searchProducts(query, limit, skip);
+
+      if (results && results.products.length > 0) {
+        return {
+          products: results.products,
+          noResults: false,
+          error: false
+        };
+      } else {
+        return {
+          products: [],
+          noResults: true,
+          error: false
+        };
+      }
+    } catch (error) {
+      console.error('Error in SearchProductsByQuery with pagination:', error);
+      return {
+        products: [],
+        noResults: true,
+        error: true
+      };
+    }
+  }
 }
