@@ -30,10 +30,8 @@ Proje, Clean Architecture prensiplerine uygun olarak tasarlanmıştır ve şu ka
 ## Özellikler
 
 - Ürün listesi görüntüleme
-- Kampanyaları görüntüleme
 - Ürün detaylarını inceleme
 - Arama yapma
-- Kategori bazlı filtreleme
 - Arama geçmişi
 - Favori ürünler
 - Sepet işlemleri
