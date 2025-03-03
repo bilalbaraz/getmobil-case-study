@@ -4,14 +4,15 @@
 
 GetMobil, kullanıcıların elektronik cihazları (özellikle cep telefonları) inceleyebileceği, karşılaştırabileceği ve satın alabileceği bir mobil uygulamadır.
 
-## Teknoloji Yığını
+## Techstack
 
 - **React Native (0.78.0)**: Çapraz platform mobil uygulama geliştirme için kullanılmıştır.
 - **React (19.0.0)**: UI bileşenlerinin yönetimi için kullanılmıştır.
 - **React Navigation**: Uygulama içi navigasyon için kullanılmıştır.
 - **React Native Paper**: Material Design tabanlı UI bileşenleri için kullanılmıştır.
 - **React Native Fast Image**: Performans odaklı resim yükleme için kullanılmıştır.
-- **Firebase**: Backend servisleri için kullanılmıştır.
+- **React Query**: Veri getirme, önbellekleme ve durum yönetimi için kullanılmıştır.
+- **Firebase**: App Distribution servisi için kullanılmıştır.
 - **DummyJSON API**: Geliştirme ve test amaçlı sahte ürün verileri için kullanılmıştır.
 
 ## Mimari
@@ -36,6 +37,14 @@ Proje, Clean Architecture prensiplerine uygun olarak tasarlanmıştır ve şu ka
 - Favori ürünler
 - Sepet işlemleri
 - Kullanıcı hesabı yönetimi
+
+## Kullanım
+
+Aşağıdaki GIF, uygulamanın temel özelliklerini ve kullanımını göstermektedir:
+
+<p align="center">
+  <img src="./getmobil-usage.gif" alt="GetMobil Kullanım Videosu" width="300" />
+</p>
 
 ## Kurulum
 
